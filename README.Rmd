@@ -9,7 +9,7 @@ output: md_document
 
 Many times during data analysis one may want to visualize data for a specific subgroup of observations. While ggplot is great for data visualization in general, constructing graphics that focus on those subgroups may need very troublesome manipulation of your data and graphical scales (for example colors), i.e. setting low alpha for unimportant observations, coloring things in a way that highlights the focus subgroup, etc.
 
-**ggfocus** allows you to build graphics that focus on those specific subgroups doing the scale manipulation automatically while keeping all the flexibility from ggplot.
+**ggfocus** allows you to build graphics that focus on those specific subgroups doing the scale manipulation automatically while keeping all the flexibility from ggplot. The idea behind this approach is from [this](https://github.com/tidyverse/ggplot2/issues/2627) issue from tidyverse/ggplot2.
 
 
 ## Installing ggfocus

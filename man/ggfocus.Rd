@@ -8,6 +8,24 @@ ggfocus(p, var, focus_levels, focus_aes = c("color", "alpha", "fill"),
   color_focus = NULL, color_other = "black", alpha_focus = 1,
   alpha_other = 0.05)
 }
+\arguments{
+\item{p}{a ggplot object}
+
+\item{var}{variable that levels are to be highlighted.}
+
+\item{focus_levels}{levels to be highlited.}
+
+\item{focus_aes}{list of aesthetics used to highlight. "color","alpha" and "fill" are available.}
+
+\item{color_focus}{vector of colors (or a single color) for focused levels.}
+
+\item{color_other}{color for non-focused levels.}
+
+\item{alpha_focus, alpha_other}{alpha value for focused and non-focused levels.}
+}
+\value{
+a ggplot object with focusing scales.
+}
 \description{
 ggfocus
 }

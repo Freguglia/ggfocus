@@ -1,5 +1,14 @@
 #' ggfocus
 #'
+#'
+#' @param p a ggplot object
+#' @param var variable that levels are to be highlighted.
+#' @param focus_levels levels to be highlited.
+#' @param focus_aes list of aesthetics used to highlight. "color","alpha" and "fill" are available.
+#' @param color_focus vector of colors (or a single color) for focused levels.
+#' @param color_other color for non-focused levels.
+#' @param alpha_focus,alpha_other alpha value for focused and non-focused levels.
+#' @return a ggplot object with focusing scales.
 #' @export
 #' @importFrom magrittr %>%
 #' @importFrom dplyr select

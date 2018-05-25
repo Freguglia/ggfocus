@@ -91,9 +91,9 @@ extensions can used with it, for example,
     focus_p <- ggfocus(p,country,c("Brazil","Argentina"), color_focus = c("Green","Blue"))
     gganimate(focus_p,interval=.2)
 
-<img src="focus_gapminder.gif" width="600px" />
+<img src="README_files/focus_gapminder.gif" width="600px" />
 
-### Using ggfocus on ggmaps
+#### Using ggfocus with ggmaps
 
     library(ggmap)
     library(maps)

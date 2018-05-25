@@ -4,6 +4,8 @@ Title: Focus on specific factor levels in your ggplot.
 Version: 0.8
 Author: Victor Freguglia
 Maintainer: Victor Freguglia <victorfreguglia@gmail.com>
+BugReports: https://github.com/Freguglia/ggfocus/issues
+URL: https://github.com/Freguglia/ggfocus
 Description: A ggplot2 extension that provides tools for automatically focusing specific factor levels.
 License: MIT
 Encoding: UTF-8

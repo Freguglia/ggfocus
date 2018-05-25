@@ -3,9 +3,11 @@ title: "ggfocus"
 author: "Victor Freguglia"
 output: md_document
 ---
+#ggfocus
+
 ## Introduction
 
-Many times during data analysis one may want to visualize data for a specific subgroup of observations. While ggplot is great for data visualization in general, constructing graphics that focus on those subgroupd may need very troublesome manipulation of your data and graphical scales (for example colors), i.e. setting low alpha for unimportant observations, coloring things in a way that highlights the focus subgroup, etc.
+Many times during data analysis one may want to visualize data for a specific subgroup of observations. While ggplot is great for data visualization in general, constructing graphics that focus on those subgroups may need very troublesome manipulation of your data and graphical scales (for example colors), i.e. setting low alpha for unimportant observations, coloring things in a way that highlights the focus subgroup, etc.
 
 **ggfocus** allows you to build graphics that focus on those specific subgroups doing the scale manipulation automatically while keeping all the flexibility from ggplot.
 
@@ -58,12 +60,6 @@ We can also highlight countries
 
 ```{r}
 ggfocus(p, country, c("Brazil","Argentina"), color_focus = c("Green","Blue"))
-```
-
-Due to the high density of lines, we may want to reduce even more the alpha for not selected countries (default it 0.15).
-
-```{r}
-ggfocus(p, country, c("Brazil","Argentina"), color_focus = c("Green","Blue"), alpha_other = 0.05)
 ```
 
 ### Interaction with other extensions

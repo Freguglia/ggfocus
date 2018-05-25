@@ -1,10 +1,13 @@
+ggfocus
+=======
+
 Introduction
 ------------
 
 Many times during data analysis one may want to visualize data for a
 specific subgroup of observations. While ggplot is great for data
 visualization in general, constructing graphics that focus on those
-subgroupd may need very troublesome manipulation of your data and
+subgroups may need very troublesome manipulation of your data and
 graphical scales (for example colors), i.e. setting low alpha for
 unimportant observations, coloring things in a way that highlights the
 focus subgroup, etc.
@@ -73,13 +76,6 @@ We can also highlight countries
 
 ![](README_files/figure-markdown_strict/unnamed-chunk-2-1.png)
 
-Due to the high density of lines, we may want to reduce even more the
-alpha for not selected countries (default it 0.15).
-
-    ggfocus(p, country, c("Brazil","Argentina"), color_focus = c("Green","Blue"), alpha_other = 0.05)
-
-![](README_files/figure-markdown_strict/unnamed-chunk-3-1.png)
-
 ### Interaction with other extensions
 
 Because **ggfocus()** retuns a modified **ggplot** object, other ggplot
@@ -103,4 +99,4 @@ extensions can used with it, for example,
     ggfocus(p, region, c("Brazil","India","Italy","Canada"),focus_aes = c("fill","alpha"),
             color_focus = "blue", alpha_other = 0.15) + guides(fill=FALSE)
 
-![](README_files/figure-markdown_strict/unnamed-chunk-6-1.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-5-1.png)

@@ -18,6 +18,11 @@
 #' @importFrom ggplot2 scale_alpha_manual
 #' @importFrom ggplot2 scale_color_manual
 #' @importFrom ggplot2 scale_fill_manual
+#' @examples
+#' library(ggplot2)
+#' p <- ggplot(iris,aes(x=Sepal.Length,y=Petal.Length)) + geom_point()
+#' ggfocus(p, Species, "versicolor")
+#'
 
 ggfocus <- function(p,
                      var, focus_levels,

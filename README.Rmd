@@ -3,6 +3,14 @@ title: "ggfocus"
 author: "Victor Freguglia"
 output: md_document
 ---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-"
+)
+```
 #ggfocus
 
 ## Introduction
@@ -72,7 +80,7 @@ focus_p <- ggfocus(p,country,c("Brazil","Argentina"), color_focus = c("Green","B
 gganimate(focus_p,interval=.2)
 ```
 ```{r, out.width = "600px",echo=FALSE}
-knitr::include_graphics("README_files/focus_gapminder.gif")
+knitr::include_graphics("man/figures/focus_gapminder.gif")
 ```
 
 #### Using ggfocus with ggmaps

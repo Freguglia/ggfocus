@@ -14,6 +14,10 @@
 #' @importFrom dplyr select
 #' @importFrom rlang enquo
 #' @importFrom rlang !!
+#' @importFrom ggplot2 aes
+#' @importFrom ggplot2 scale_alpha_manual
+#' @importFrom ggplot2 scale_color_manual
+#' @importFrom ggplot2 scale_fill_manual
 
 ggfocus <- function(p,
                      var, focus_levels,

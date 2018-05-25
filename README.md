@@ -14,7 +14,9 @@ focus subgroup, etc.
 
 **ggfocus** allows you to build graphics that focus on those specific
 subgroups doing the scale manipulation automatically while keeping all
-the flexibility from ggplot.
+the flexibility from ggplot. The idea behind this approach is from
+[this](https://github.com/tidyverse/ggplot2/issues/2627) issue from
+tidyverse/ggplot2.
 
 Installing ggfocus
 ------------------
@@ -61,20 +63,20 @@ Using the *gapminder* dataset, first we create our ggplot
     p <- ggplot(gapminder, aes(x=log(gdpPercap), y=lifeExp, group=country)) + geom_line()
     p
 
-![](README_files/figure-markdown_strict/ex1_create-1.png)
+![](man/figures/README-ex1_create-1.png)
 
 Now we can use *ggfocus()* to highlight European countries only.
 
     library(ggfocus)
     ggfocus(p, continent, "Europe")
 
-![](README_files/figure-markdown_strict/unnamed-chunk-1-1.png)
+![](man/figures/README-unnamed-chunk-2-1.png)
 
 We can also highlight countries
 
     ggfocus(p, country, c("Brazil","Argentina"), color_focus = c("Green","Blue"))
 
-![](README_files/figure-markdown_strict/unnamed-chunk-2-1.png)
+![](man/figures/README-unnamed-chunk-3-1.png)
 
 ### Interaction with other extensions
 
@@ -87,7 +89,7 @@ extensions can used with it, for example,
     focus_p <- ggfocus(p,country,c("Brazil","Argentina"), color_focus = c("Green","Blue"))
     gganimate(focus_p,interval=.2)
 
-<img src="README_files/focus_gapminder.gif" width="600px" />
+<img src="man/figures/focus_gapminder.gif" width="600px" />
 
 #### Using ggfocus with ggmaps
 
@@ -99,4 +101,4 @@ extensions can used with it, for example,
     ggfocus(p, region, c("Brazil","India","Italy","Canada"),focus_aes = c("fill","alpha"),
             color_focus = "blue", alpha_other = 0.15) + guides(fill=FALSE)
 
-![](README_files/figure-markdown_strict/unnamed-chunk-5-1.png)
+![](man/figures/README-unnamed-chunk-6-1.png)

@@ -15,9 +15,9 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-Many times during data analysis one may want to visualize data for a specific subgroup of observations. While ggplot is great for data visualization in general, constructing graphics that focus on those subgroups may need very troublesome manipulation of your data and graphical scales (for example colors), i.e. setting low alpha for unimportant observations, coloring things in a way that highlights the focus subgroup, etc.
+Many times during data analysis, one may want to visualize data for a specific subgroup of observations. While ggplot is great for data visualization in general, constructing graphics that focus on those subgroups may need very troublesome manipulation of data and graphical scales (for example colors), i.e. setting low alpha for unimportant observations, coloring things in a way that highlights the focus subgroup, etc.
 
-**ggfocus** allows you to build graphics that focus on those specific subgroups doing the scale manipulation automatically while keeping all the flexibility from ggplot. The idea behind this approach is from [this](https://github.com/tidyverse/ggplot2/issues/2627) issue from tidyverse/ggplot2.
+**ggfocus** allows you to build graphics that focus on those specific subgroups by doing the scale manipulation automatically while keeping all the flexibility from ggplot. The idea behind this approach is from [this](https://github.com/tidyverse/ggplot2/issues/2627) issue from tidyverse/ggplot2.
 
 
 ## Installing ggfocus
@@ -30,7 +30,7 @@ devtools::install_github("Freguglia/ggfocus")
 
 ## Usage 
 
-*ggfocus* implements the *ggfocus()* function. (Read the function help for more information)
+*ggfocus* implements the *ggfocus()* function.
 
 ```{r gfocus, eval=FALSE}
 ggfocus(p, var, focus_levels, focus_aes = c("color", "alpha"),
@@ -39,10 +39,10 @@ ggfocus(p, var, focus_levels, focus_aes = c("color", "alpha"),
 ```
 
 - **p**: a ggplot.
-- **var**: the factor that you want to specify some specific levels (note that this can be a numeric variable that represents a factor, i.e., you gave an integer number to each 'level' or a character variable).
+- **var**: the factor variable that you want to specify levels to focus (note that this can be a numeric variable that represents a factor, i.e., you gave an integer number to each 'level', like an integer ID or a character variable).
 - **focus_levels**: a vector of levels (either character or numeric) to highlight.
-- **focus_aes**: which aesthetics should be used to highlight the levels. Currently only **color**, **alpha** and **fill** are available.
-- **color_focus**: what color selected levels should have? It can be either one color (all equal) or character vector with one color for each level.
+- **focus_aes**: which aesthetics should be used to highlight the levels. Currently only **color**, **alpha** and **fill** are available. A character vector is expected.
+- **color_focus**: what color selected levels should have? It can be either one color (all equal) or character vector with one color for each level. This affects both **color** and **fill**.
 - **color_other**: color for levels not selected.
 - **alpha_focus** and **alpha_other**: alpha for selcted and not selected levels, respectively.
 

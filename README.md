@@ -21,10 +21,11 @@ tidyverse/ggplot2.
 Installing ggfocus
 ------------------
 
-The package is not available in CRAN (yet), but you can install it from
-github with [devtools](https://github.com/hadley/devtools).
+The package is available in CRAN, but you can also install the latest
+version from github with [devtools](https://github.com/hadley/devtools).
 
-    devtools::install_github("Freguglia/ggfocus")
+    devtools::install_github("Freguglia/ggfocus") # Latest version
+    install.packages("ggfocus") # CRAN version
 
 Usage
 -----

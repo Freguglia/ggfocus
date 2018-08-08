@@ -12,12 +12,9 @@
 #' @export
 #' @importFrom magrittr %>%
 #' @importFrom dplyr select
-#' @importFrom rlang enquo
-#' @importFrom rlang !!
-#' @importFrom ggplot2 aes
-#' @importFrom ggplot2 scale_alpha_manual
-#' @importFrom ggplot2 scale_color_manual
-#' @importFrom ggplot2 scale_fill_manual
+#' @importFrom rlang enquo !!
+#' @importFrom ggplot2 aes scale_alpha_manual scale_color_manual scale_fill_manual
+#' @author Victor Freguglia
 #' @examples
 #' library(ggplot2)
 #' p <- ggplot(iris,aes(x=Sepal.Length,y=Petal.Length)) + geom_point()

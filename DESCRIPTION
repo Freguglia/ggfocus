@@ -1,7 +1,7 @@
 Package: ggfocus
 Type: Package
 Title: Focus on Specific Factor Levels in your ggplot()
-Version: 0.8
+Version: 0.81
 Author: Victor Freguglia
 Maintainer: Victor Freguglia <victorfreguglia@gmail.com>
 BugReports: https://github.com/Freguglia/ggfocus/issues

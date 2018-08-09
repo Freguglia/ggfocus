@@ -1,9 +1,25 @@
+#'  scale_color_focus
+#'
+#' @description    Color scale for `color` aesthetics. This is an alternative use for \link{ggfocus} that uses the usual grammar of graphics.
+#'
+#' @param focus_levels character vector with levels to focus.
+#' @param color_focus `color` for focused levels.
+#' @param color_other `color` for other levels.
+#'
+#' @example
+#'  p <- ggplot(iris,aes(x = Petal.Length, y = Sepal.Length, color = Species)) + geom_point()
+#'  p + scale_color_focus(focus_levels = "setosa", color_focus = "red")
+#'  ## This is the same as
+#'  ggfocus(p, Species, focus_levels = "setosa", focus_aes = "color")
+#'
+#' @export
 scale_color_focus <- function(focus_levels,color_focus=NULL,color_other="black"){
   structure(list(focus_levels = focus_levels,
                  color_focus = color_focus,
                  color_other = color_other),class="ggfocus_color")
 }
 
+#' @export
 ggplot_add.ggfocus_color <- function(object, plot, objectname){
   p1 <- plot
   focus_levels <- object$focus_levels

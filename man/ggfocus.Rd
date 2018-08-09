@@ -35,3 +35,6 @@ p <- ggplot(iris,aes(x=Sepal.Length,y=Petal.Length)) + geom_point()
 ggfocus(p, Species, "versicolor")
 
 }
+\author{
+Victor Freguglia
+}

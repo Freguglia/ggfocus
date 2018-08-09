@@ -10,15 +10,16 @@ ggplot_add.ggfocus_alpha <- function(object, plot, objectname){
   alpha_focus <- object$alpha_focus
   alpha_other <- object$alpha_other
   var <- p1$mapping$alpha
+  if(is.null(var)){stop("'alpha' isn't mapped by any variable. Use '+ aes(alpha=...) + scale_alpha_focus(...)'.")}
   data <- p1$data
   var_column <- data %>% select(!!var) %>% lapply(as.character) %>% unlist
-  if(".marker" %in% colnames(data)){data$.marker=NULL}
-  .marker <- ifelse(var_column %in% focus_levels, as.character(var_column),"Other")
-  p1$data$.marker <- .marker
-  n_levels <- .marker %>% unique %>% length
+  if(".marker_alpha" %in% colnames(data)){data$.marker_alpha=NULL}
+  .marker_alpha <- ifelse(var_column %in% focus_levels, as.character(var_column),"Other")
+  p1$data$.marker_alpha <- .marker_alpha
+  n_levels <- .marker_alpha %>% unique %>% length
   alpha_values <- rep(alpha_focus,n_levels)
-  names(alpha_values) <- .marker %>% unique()
+  names(alpha_values) <- .marker_alpha %>% unique()
   alpha_values["Other"] = alpha_other
-  p1 <- p1 + aes(alpha=.marker) + scale_alpha_manual(values=alpha_values,breaks=NULL)
+  p1 <- p1 + aes(alpha=.marker_alpha) + scale_alpha_manual(values=alpha_values,breaks=NULL)
   return(p1)
 }

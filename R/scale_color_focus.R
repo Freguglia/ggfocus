@@ -10,6 +10,7 @@ ggplot_add.ggfocus_color <- function(object, plot, objectname){
   color_focus <- object$color_focus
   color_other <- object$color_other
   var <- p1$mapping$colour
+  if(is.null(var)){stop("'color' isn't mapped by any variable. Use 'aes(color=...) + scale_color_focus(...)")}
   data <- p1$data
   var_column <- data %>% select(!!var) %>% lapply(as.character) %>% unlist
   if(".marker" %in% colnames(data)){data$.marker=NULL}

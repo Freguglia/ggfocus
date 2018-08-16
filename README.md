@@ -53,6 +53,10 @@ Usage
 -   **alpha\_focus** and **alpha\_other**: alpha for selcted and not
     selected levels, respectively.
 
+You can also use the usual `ggplot2` grammar `+` to add scales with the
+family of function `scale_*_focus()`. These two uses are equivalent,
+read the vignette for more information.
+
 Examples
 --------
 
@@ -102,3 +106,15 @@ extensions can used with it, for example,
             color_focus = "blue", alpha_other = 0.15) + guides(fill=FALSE)
 
 ![](man/figures/README-unnamed-chunk-6-1.png)
+
+Contributing and Bug Reports
+============================
+
+-   If you find any unexpected result or bug, please file an issue with
+    a reproducible example.
+-   For new features, for example, the addition of the focus scale for a
+    new aesthetics, file and issue and add and example or a brief
+    explanation with important aspects for the focus scale of this new
+    aesthetics.
+-   If you want to contribute somehow, please contact me or file an
+    issue so we can coordinate.

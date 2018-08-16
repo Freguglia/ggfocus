@@ -71,3 +71,7 @@ ggfocus <- function(p,
   }
   p1
 }
+
+#' @importFrom magrittr %>%
+#' @export
+magrittr::'%>%'

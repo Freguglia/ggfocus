@@ -47,6 +47,8 @@ ggfocus(p, var, focus_levels, focus_aes = c("color", "alpha"),
 - **color_other**: color for levels not selected.
 - **alpha_focus** and **alpha_other**: alpha for selcted and not selected levels, respectively.
 
+ You can also use the usual `ggplot2` grammar `+` to add scales with the family of function `scale_*_focus()`. These two uses are equivalent, read the vignette for more information.
+
 
 ## Examples
 
@@ -95,3 +97,9 @@ p <- ggplot(wm, aes(x=long, y = lat, group = group)) + geom_polygon(color="black
 ggfocus(p, region, c("Brazil","India","Italy","Canada"),focus_aes = c("fill","alpha"),
         color_focus = "blue", alpha_other = 0.15) + guides(fill=FALSE)
 ```
+
+# Contributing and Bug Reports
+
+ - If you find any unexpected result or bug, please file an issue with a reproducible example.
+ - For new features, for example, the addition of the focus scale for a new aesthetics, file and issue and add and example or a brief explanation with important aspects for the focus scale of this new aesthetics.
+ - If you want to contribute somehow, please contact me or file an issue so we can coordinate.

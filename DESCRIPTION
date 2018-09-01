@@ -10,7 +10,7 @@ Description: A 'ggplot2' extension that provides tools for automatically focusin
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 Imports: magrittr, dplyr, rlang, RColorBrewer, ggplot2
 Suggests: 
     knitr,

@@ -4,7 +4,8 @@
 \alias{scale_color_focus}
 \title{scale_color_focus}
 \usage{
-scale_color_focus(focus_levels, color_focus = NULL, color_other = "black")
+scale_color_focus(focus_levels, color_focus = NULL,
+  color_other = "black")
 }
 \arguments{
 \item{focus_levels}{character vector with levels to focus.}

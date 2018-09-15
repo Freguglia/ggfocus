@@ -14,5 +14,6 @@ RoxygenNote: 6.1.0
 Imports: magrittr, dplyr, rlang, RColorBrewer, ggplot2
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    gapminder
 VignetteBuilder: knitr

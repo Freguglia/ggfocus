@@ -75,3 +75,7 @@ ggfocus <- function(p,
 #' @importFrom magrittr %>%
 #' @export
 magrittr::'%>%'
+
+#' @importFrom ggplot2 ggplot_add
+#' @export
+ggplot_add

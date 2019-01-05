@@ -6,11 +6,9 @@
 #' @param color_focus `fill` color for focused levels.
 #' @param color_other `fill` color for other levels.
 #'
-#' @example
-#'  p <- ggplot(iris,aes(x = Petal.Length, group = Species, fill = Species)) + geom_histogram()
-#'  p + scale_fill_focus(focus_levels = "versicolor", color_focus = "red")
-#'  ## This is the same as
-#'  ggfocus(p, Species, focus_levels = "versicolor", focus_aes = "fill", color_other = "gray")
+#' @examples
+#'  p <- ggplot(iris,aes(x = Petal.Length, group = Species, fill = Species)) + geom_histogram() +
+#'   scale_fill_focus(focus_levels = "versicolor", color_focus = "red")
 #'
 #' @export
 scale_fill_focus <- function(focus_levels,color_focus=NULL,color_other="gray"){
@@ -20,7 +18,8 @@ scale_fill_focus <- function(focus_levels,color_focus=NULL,color_other="gray"){
 }
 
 #' @export
-ggplot_add.ggfocus_fill <- function(object, plot, objectname){
+#' @method ggplot_add ggfocus_fill
+ggplot_add.ggfocus_fill <- function(object, plot, object_name){
   p1 <- plot
   focus_levels <- object$focus_levels
   color_focus <- object$color_focus

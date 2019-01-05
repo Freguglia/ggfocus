@@ -17,3 +17,8 @@ scale_color_focus(focus_levels, color_focus = NULL,
 \description{
 Color scale for `color` aesthetics. This is an alternative use for \link{ggfocus} that uses the usual grammar of graphics.
 }
+\examples{
+ p <- ggplot(iris,aes(x = Petal.Length, y = Sepal.Length, color = Species)) + geom_point() +
+ scale_color_focus(focus_levels = "setosa", color_focus = "red")
+
+}

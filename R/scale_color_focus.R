@@ -6,11 +6,9 @@
 #' @param color_focus `color` for focused levels.
 #' @param color_other `color` for other levels.
 #'
-#' @example
-#'  p <- ggplot(iris,aes(x = Petal.Length, y = Sepal.Length, color = Species)) + geom_point()
-#'  p + scale_color_focus(focus_levels = "setosa", color_focus = "red")
-#'  ## This is the same as
-#'  ggfocus(p, Species, focus_levels = "setosa", focus_aes = "color")
+#' @examples
+#'  p <- ggplot(iris,aes(x = Petal.Length, y = Sepal.Length, color = Species)) + geom_point() +
+#'  scale_color_focus(focus_levels = "setosa", color_focus = "red")
 #'
 #' @export
 scale_color_focus <- function(focus_levels,color_focus=NULL,color_other="black"){
@@ -20,7 +18,8 @@ scale_color_focus <- function(focus_levels,color_focus=NULL,color_other="black")
 }
 
 #' @export
-ggplot_add.ggfocus_color <- function(object, plot, objectname){
+#' @method ggplot_add ggfocus_color
+ggplot_add.ggfocus_color <- function(object, plot, object_name){
   p1 <- plot
   focus_levels <- object$focus_levels
   color_focus <- object$color_focus

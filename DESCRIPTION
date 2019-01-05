@@ -1,7 +1,7 @@
 Package: ggfocus
 Type: Package
 Title: Focus on Specific Factor Levels in your ggplot()
-Version: 0.81
+Version: 0.9
 Author: Victor Freguglia
 Maintainer: Victor Freguglia <victorfreguglia@gmail.com>
 BugReports: https://github.com/Freguglia/ggfocus/issues
@@ -10,10 +10,12 @@ Description: A 'ggplot2' extension that provides tools for automatically focusin
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.0
-Imports: magrittr, dplyr, rlang, RColorBrewer, ggplot2
+RoxygenNote: 6.1.1
+Depends: ggplot2
+Imports: magrittr, dplyr, rlang, RColorBrewer
 Suggests: 
     knitr,
     rmarkdown,
-    gapminder
+    gapminder,
+    ggmap
 VignetteBuilder: knitr

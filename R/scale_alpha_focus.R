@@ -6,13 +6,10 @@
 #' @param alpha_focus `alpha` for focused levels.
 #' @param alpha_other `alpha` for other levels.
 #'
-#' @example
-#'  p <- ggplot(iris,aes(x = Petal.Length, y = Sepal.Length, alpha = Species)) + geom_point()
+#' @examples
+#'  p <- ggplot(iris,aes(x = Petal.Length, y = Sepal.Length, alpha = Species)) + geom_point() +
+#'   scale_alpha_focus(focus_levels = "versicolor")
 #'  # Note this gives a warning because alpha doesn't always make sense with categorical variables.
-#'
-#'  p + scale_alpha_focus(focus_levels = "versicolor")
-#'  ## This is the same as
-#'  ggfocus(p, Species, focus_levels = "versicolor", focus_aes = "alpha")
 #'
 #' @export
 scale_alpha_focus <- function(focus_levels,alpha_focus=1,alpha_other=0.05){
@@ -22,7 +19,8 @@ scale_alpha_focus <- function(focus_levels,alpha_focus=1,alpha_other=0.05){
 }
 
 #' @export
-ggplot_add.ggfocus_alpha <- function(object, plot, objectname){
+#' @method ggplot_add ggfocus_alpha
+ggplot_add.ggfocus_alpha <- function(object, plot, object_name){
   p1 <- plot
   focus_levels <- object$focus_levels
   alpha_focus <- object$alpha_focus

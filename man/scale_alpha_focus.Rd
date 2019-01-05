@@ -16,3 +16,9 @@ scale_alpha_focus(focus_levels, alpha_focus = 1, alpha_other = 0.05)
 \description{
 Alpha scale that focus specific factor levels. This is an alternative use of \link{ggfocus} function that uses the usual grammar of graphics.
 }
+\examples{
+ p <- ggplot(iris,aes(x = Petal.Length, y = Sepal.Length, alpha = Species)) + geom_point() +
+  scale_alpha_focus(focus_levels = "versicolor")
+ # Note this gives a warning because alpha doesn't always make sense with categorical variables.
+
+}

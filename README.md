@@ -1,5 +1,12 @@
-ggfocus
-=======
+\#ggfocus
+
+<!-- badges: start -->
+
+[![Build
+Status](https://travis-ci.org/Freguglia/ggfocus.svg?branch=master)](https://travis-ci.org/Freguglia/ggfocus)
+[![CRAN
+status](http://www.r-pkg.org/badges/version-last-release/ggfocus)](https://cran.r-project.org/package=ggfocus)
+<!-- badges: end -->
 
 Introduction
 ------------
@@ -8,7 +15,7 @@ Many times during data analysis, one may want to visualize data for a
 specific subgroup of observations. While ggplot is great for data
 visualization in general, constructing graphics that focus on those
 subgroups may need very troublesome manipulation of data and graphical
-scales (for example colors), i.e. setting low alpha for unimportant
+scales (for example colors), i.e. setting low alpha for unimportant
 observations, coloring things in a way that highlights the focus
 subgroup, etc.
 
@@ -39,7 +46,7 @@ Usage
 -   **p**: a ggplot.
 -   **var**: the factor variable that you want to specify levels to
     focus (note that this can be a numeric variable that represents a
-    factor, i.e., you gave an integer number to each 'level', like an
+    factor, i.e., you gave an integer number to each ‘level’, like an
     integer ID or a character variable).
 -   **focus\_levels**: a vector of levels (either character or numeric)
     to highlight.
@@ -64,6 +71,11 @@ Examples
 Using the *gapminder* dataset, first we create our ggplot
 
     library(ggplot2)
+    #> Registered S3 methods overwritten by 'ggplot2':
+    #>   method         from 
+    #>   [.quosures     rlang
+    #>   c.quosures     rlang
+    #>   print.quosures rlang
     library(gapminder)
     p <- ggplot(gapminder, aes(x=log(gdpPercap), y=lifeExp, group=country)) + geom_line()
     p
@@ -90,6 +102,8 @@ extensions can used with it, for example,
 [ggmap](https://cran.r-project.org/web/packages/ggmap/).
 
     library(ggmap)
+    #> Google's Terms of Service: https://cloud.google.com/maps-platform/terms/.
+    #> Please cite ggmap if you use it! See citation("ggmap") for details.
     library(maps)
 
     wm <- map_data("world")

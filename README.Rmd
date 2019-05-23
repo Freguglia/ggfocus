@@ -13,6 +13,11 @@ knitr::opts_chunk$set(
 ```
 #ggfocus
 
+<!-- badges: start -->
+[![Build Status](https://travis-ci.org/Freguglia/ggfocus.svg?branch=master)](https://travis-ci.org/Freguglia/ggfocus)
+[![CRAN status](http://www.r-pkg.org/badges/version-last-release/ggfocus)](https://cran.r-project.org/package=ggfocus)
+<!-- badges: end -->
+
 ## Introduction
 
 Many times during data analysis, one may want to visualize data for a specific subgroup of observations. While ggplot is great for data visualization in general, constructing graphics that focus on those subgroups may need very troublesome manipulation of data and graphical scales (for example colors), i.e. setting low alpha for unimportant observations, coloring things in a way that highlights the focus subgroup, etc.

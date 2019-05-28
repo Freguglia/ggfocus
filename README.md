@@ -1,4 +1,5 @@
-\#ggfocus
+ggfocus
+=======
 
 <!-- badges: start -->
 
@@ -37,28 +38,28 @@ version from github with [devtools](https://github.com/hadley/devtools).
 Usage
 -----
 
-*ggfocus* implements the *ggfocus()* function.
+*ggfocus* implements the `ggfocus()` function.
 
     ggfocus(p, var, focus_levels, focus_aes = c("color", "alpha"),
       color_focus = NULL, color_other = "black", alpha_focus = 1,
       alpha_other = 0.05)
 
--   **p**: a ggplot.
--   **var**: the factor variable that you want to specify levels to
-    focus (note that this can be a numeric variable that represents a
-    factor, i.e., you gave an integer number to each ‘level’, like an
-    integer ID or a character variable).
--   **focus\_levels**: a vector of levels (either character or numeric)
-    to highlight.
--   **focus\_aes**: which aesthetics should be used to highlight the
-    levels. Currently only **color**, **alpha** and **fill** are
-    available. A character vector is expected.
--   **color\_focus**: what color selected levels should have? It can be
+-   `p`: a ggplot.
+-   `var`: the factor variable that you want to specify levels to focus
+    (note that this can be a numeric variable that represents a factor,
+    i.e., you gave an integer number to each ‘level’, like an integer ID
+    or a character variable).
+-   `focus_levels`: a vector of levels (either character or numeric) to
+    highlight.
+-   `focus_aes`: which aesthetics should be used to highlight the
+    levels. Currently only `color`, `alpha` and `fill` are available. A
+    character vector is expected.
+-   `color_focus`: what color selected levels should have? It can be
     either one color (all equal) or character vector with one color for
-    each level. This affects both **color** and **fill**.
--   **color\_other**: color for levels not selected.
--   **alpha\_focus** and **alpha\_other**: alpha for selcted and not
-    selected levels, respectively.
+    each level. This affects both `color` and `fill`.
+-   `color_other`: color for levels not selected.
+-   `alpha_focus` and `alpha_other`: alpha for selcted and not selected
+    levels, respectively.
 
 You can also use the usual `ggplot2` grammar `+` to add scales with the
 family of function `scale_*_focus()`. These two uses are equivalent,
@@ -68,14 +69,9 @@ information.
 Examples
 --------
 
-Using the *gapminder* dataset, first we create our ggplot
+In the `gapminder` dataset, first we create a simple `ggplot`
 
     library(ggplot2)
-    #> Registered S3 methods overwritten by 'ggplot2':
-    #>   method         from 
-    #>   [.quosures     rlang
-    #>   c.quosures     rlang
-    #>   print.quosures rlang
     library(gapminder)
     p <- ggplot(gapminder, aes(x=log(gdpPercap), y=lifeExp, group=country)) + geom_line()
     p
@@ -97,13 +93,10 @@ We can also highlight countries
 
 ### Interaction with other extensions
 
-Because **ggfocus()** retuns a modified **ggplot** object, other ggplot
-extensions can used with it, for example,
-[ggmap](https://cran.r-project.org/web/packages/ggmap/).
+Because `ggfocus()` retuns a modified `ggplot` object and only controls
+scales, other `ggplot` extensions and types of graphics can interact
+with it the same way, an example with `maps` is shown below.
 
-    library(ggmap)
-    #> Google's Terms of Service: https://cloud.google.com/maps-platform/terms/.
-    #> Please cite ggmap if you use it! See citation("ggmap") for details.
     library(maps)
 
     wm <- map_data("world")

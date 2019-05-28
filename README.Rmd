@@ -4,14 +4,17 @@ author: "Victor Freguglia"
 output: md_document
 ---
 
+# ggfocus
+
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "man/figures/README-"
+  fig.path = "man/figures/README-",
+  message = FALSE,
+  warning = FALSE
 )
 ```
-#ggfocus
 
 <!-- badges: start -->
 [![Build Status](https://travis-ci.org/Freguglia/ggfocus.svg?branch=master)](https://travis-ci.org/Freguglia/ggfocus)
@@ -36,7 +39,7 @@ install.packages("ggfocus") # CRAN version
 
 ## Usage 
 
-*ggfocus* implements the *ggfocus()* function.
+*ggfocus* implements the `ggfocus()` function.
 
 ```{r gfocus, eval=FALSE}
 ggfocus(p, var, focus_levels, focus_aes = c("color", "alpha"),
@@ -44,20 +47,20 @@ ggfocus(p, var, focus_levels, focus_aes = c("color", "alpha"),
   alpha_other = 0.05)
 ```
 
-- **p**: a ggplot.
-- **var**: the factor variable that you want to specify levels to focus (note that this can be a numeric variable that represents a factor, i.e., you gave an integer number to each 'level', like an integer ID or a character variable).
-- **focus_levels**: a vector of levels (either character or numeric) to highlight.
-- **focus_aes**: which aesthetics should be used to highlight the levels. Currently only **color**, **alpha** and **fill** are available. A character vector is expected.
-- **color_focus**: what color selected levels should have? It can be either one color (all equal) or character vector with one color for each level. This affects both **color** and **fill**.
-- **color_other**: color for levels not selected.
-- **alpha_focus** and **alpha_other**: alpha for selcted and not selected levels, respectively.
+- `p`: a ggplot.
+- `var`: the factor variable that you want to specify levels to focus (note that this can be a numeric variable that represents a factor, i.e., you gave an integer number to each 'level', like an integer ID or a character variable).
+- `focus_levels`: a vector of levels (either character or numeric) to highlight.
+- `focus_aes`: which aesthetics should be used to highlight the levels. Currently only `color`, `alpha` and `fill` are available. A character vector is expected.
+- `color_focus`: what color selected levels should have? It can be either one color (all equal) or character vector with one color for each level. This affects both `color` and `fill`.
+- `color_other`: color for levels not selected.
+- `alpha_focus` and `alpha_other`: alpha for selcted and not selected levels, respectively.
 
  You can also use the usual `ggplot2` grammar `+` to add scales with the family of function `scale_*_focus()`. These two uses are equivalent, read the [vignette](vignettes/a-quick-guide-to-ggfocus.html) for more information.
 
 
 ## Examples
 
-Using the *gapminder* dataset, first we create our ggplot
+In the `gapminder` dataset, first we create a simple `ggplot`
 ```{r ex1_create}
 library(ggplot2)
 library(gapminder)
@@ -66,23 +69,21 @@ p
 ```
 
 Now we can use *ggfocus()* to highlight European countries only.
-
 ```{r}
 library(ggfocus)
 ggfocus(p, continent, "Europe")
 ```
 
 We can also highlight countries
-
 ```{r}
 ggfocus(p, country, c("Brazil","Argentina"), color_focus = c("Green","Blue"))
 ```
 
 ### Interaction with other extensions
-Because **ggfocus()** retuns a modified **ggplot** object, other ggplot extensions can used with it, for example, [ggmap](https://cran.r-project.org/web/packages/ggmap/).
+
+Because `ggfocus()` retuns a modified `ggplot` object and only controls scales, other `ggplot` extensions and types of graphics can interact with it the same way, an example with `maps` is shown below.
 
 ```{r}
-library(ggmap)
 library(maps)
 
 wm <- map_data("world")

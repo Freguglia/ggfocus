@@ -1,19 +1,24 @@
-#' ggfocus
+#' @title (Deprecated) Sets focus scales to an existing `ggplot` object
+#'
+#' @description
+#'
+#' `ggfocus()` is deprecated. Add focus scales with `scale_color_focus()`,
+#' `scale_fill_focus()`, `scale_alpha_focus()`, ... instead.
+#'
+#' Creates a `ggplot` object with focus scales from another `ggplot` object.
 #'
 #'
-#' @param p a ggplot object
-#' @param var variable that levels are to be highlighted.
+#' @param p a `ggplot` object.
+#' @param var Sets.
 #' @param focus_levels levels to be highlited.
 #' @param focus_aes list of aesthetics used to highlight. "color","alpha" and "fill" are available.
 #' @param color_focus vector of colors (or a single color) for focused levels.
 #' @param color_other color for non-focused levels.
 #' @param alpha_focus,alpha_other alpha value for focused and non-focused levels.
 #' @return a ggplot object with focusing scales.
-#' @export
 #' @importFrom magrittr %>%
 #' @importFrom dplyr select
 #' @importFrom rlang enquo !!
-#' @importFrom ggplot2 aes scale_alpha_manual scale_color_manual scale_fill_manual
 #' @author Victor Freguglia
 #' @examples
 #' library(ggplot2)
@@ -26,6 +31,9 @@ ggfocus <- function(p,
                      focus_aes=c("color","alpha","fill"),
                      color_focus = NULL, color_other = "black",
                      alpha_focus = 1, alpha_other = 0.05){
+
+  message("The function ggfocus() is deprecated, consider using the family scale_*_focus() instead.")
+
   p1 <- p
   data <- p$data
   var <- enquo(var)
@@ -71,11 +79,3 @@ ggfocus <- function(p,
   }
   p1
 }
-
-#' @importFrom magrittr %>%
-#' @export
-magrittr::'%>%'
-
-#' @importFrom ggplot2 ggplot_add
-#' @export
-ggplot_add

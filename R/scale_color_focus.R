@@ -5,6 +5,8 @@
 #' @param focus_levels character vector with levels to focus.
 #' @param color_focus `color` for focused levels.
 #' @param color_other `color` for other levels.
+#' @param palette_focus If `color_focus` is not specified, provide a pelette
+#' from RColorBrewer to pick colors.
 #'
 #' @examples
 #'  ggplot(iris,aes(x = Petal.Length, y = Sepal.Length, color = Species)) +
@@ -12,7 +14,7 @@
 #'  scale_color_focus(focus_levels = "setosa", color_focus = "red")
 #'
 #' @export
-scale_color_focus <- function(focus_levels,
+scale_color_focus <- function(focus_levels = character(0),
                               color_focus = NULL,
                               color_other = "black",
                               palette_focus = "Set1"){
@@ -46,15 +48,19 @@ ggplot_add.ggfocus_color <- function(object, plot, object_name){
     data$.marker_color=NULL
   }
   .marker_color <- ifelse(var_column %in% focus_levels, as.character(var_column), "Other")
+  if(sum(.marker_color == "Other") == 0){
+    stop("No observations are unfocused. Use less values in 'focus_levels'.")
+  }
   p1$data$.marker_color <- .marker_color
-  n_levels <- .marker_color %>% unique %>% length
+  n_levels <- .marker_color %>% unique() %>% length()
 
   if(is.null(color_focus)){
     color_focus <- suppressWarnings(
       RColorBrewer::brewer.pal(n_levels-1, palette_focus)[1:(n_levels-1)])
   }
   if(length(color_focus)!=1 & length(color_focus)!=length(focus_levels)){
-    stop("color_focus must be of length 1 or same length as focus_levels.")}
+    stop("color_focus must be of length 1 or same length as focus_levels.")
+  }
   color_values <- rep(color_other,n_levels)
   names(color_values) <- .marker_color %>% unique()
   color_values[focus_levels] = color_focus

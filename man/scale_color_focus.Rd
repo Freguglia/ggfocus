@@ -4,7 +4,12 @@
 \alias{scale_color_focus}
 \title{Focus scale for color aesthetics}
 \usage{
-scale_color_focus(focus_levels, color_focus = NULL, color_other = "black")
+scale_color_focus(
+  focus_levels = character(0),
+  color_focus = NULL,
+  color_other = "black",
+  palette_focus = "Set1"
+)
 }
 \arguments{
 \item{focus_levels}{character vector with levels to focus.}
@@ -12,12 +17,16 @@ scale_color_focus(focus_levels, color_focus = NULL, color_other = "black")
 \item{color_focus}{`color` for focused levels.}
 
 \item{color_other}{`color` for other levels.}
+
+\item{palette_focus}{If `color_focus` is not specified, provide a pelette
+from RColorBrewer to pick colors.}
 }
 \description{
 Creates a color scale that focus on specific levels.
 }
 \examples{
- p <- ggplot(iris,aes(x = Petal.Length, y = Sepal.Length, color = Species)) + geom_point() +
+ ggplot(iris,aes(x = Petal.Length, y = Sepal.Length, color = Species)) +
+ geom_point() +
  scale_color_focus(focus_levels = "setosa", color_focus = "red")
 
 }

@@ -19,6 +19,5 @@ Imports:
     RColorBrewer
 Suggests: 
     knitr,
-    rmarkdown,
-    ggmap
+    rmarkdown
 VignetteBuilder: knitr

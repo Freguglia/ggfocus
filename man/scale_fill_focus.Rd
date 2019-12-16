@@ -14,10 +14,13 @@ scale_fill_focus(focus_levels, color_focus = NULL, color_other = "gray")
 \item{color_other}{`fill` color for other levels.}
 }
 \description{
-@description Color scale for `fill` aesthetics. This is an alternative use for \link{ggfocus} that uses the usual grammar of graphics.
+Color scale for `fill` aesthetics. This is an alternative use for \link{ggfocus} that uses the usual grammar of graphics.
 }
 \examples{
  p <- ggplot(iris,aes(x = Petal.Length, group = Species, fill = Species)) + geom_histogram() +
   scale_fill_focus(focus_levels = "versicolor", color_focus = "red")
 
+}
+\author{
+Victor Freguglia
 }

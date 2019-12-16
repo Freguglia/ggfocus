@@ -4,8 +4,7 @@
 \alias{scale_fill_focus}
 \title{scale_fill_focus}
 \usage{
-scale_fill_focus(focus_levels, color_focus = NULL,
-  color_other = "gray")
+scale_fill_focus(focus_levels, color_focus = NULL, color_other = "gray")
 }
 \arguments{
 \item{focus_levels}{character vector with levels to focus.}

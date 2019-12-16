@@ -2,10 +2,9 @@
 % Please edit documentation in R/scale_color_focus.R
 \name{scale_color_focus}
 \alias{scale_color_focus}
-\title{scale_color_focus}
+\title{Focus scale for color aesthetics}
 \usage{
-scale_color_focus(focus_levels, color_focus = NULL,
-  color_other = "black")
+scale_color_focus(focus_levels, color_focus = NULL, color_other = "black")
 }
 \arguments{
 \item{focus_levels}{character vector with levels to focus.}
@@ -15,7 +14,7 @@ scale_color_focus(focus_levels, color_focus = NULL,
 \item{color_other}{`color` for other levels.}
 }
 \description{
-Color scale for `color` aesthetics. This is an alternative use for \link{ggfocus} that uses the usual grammar of graphics.
+Creates a color scale that focus on specific levels.
 }
 \examples{
  p <- ggplot(iris,aes(x = Petal.Length, y = Sepal.Length, color = Species)) + geom_point() +

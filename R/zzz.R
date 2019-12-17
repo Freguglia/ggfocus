@@ -10,3 +10,8 @@ magrittr::'%>%'
 #' @importFrom ggplot2 ggplot_add
 #' @export
 ggplot_add
+
+#' @export
+#' @rdname scale_focus
+#' @usage NULL
+scale_colour_focus <- scale_color_focus

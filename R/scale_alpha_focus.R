@@ -1,20 +1,19 @@
-#'  scale_color_focus
+#' @rdname scale_focus
 #'
 #' @description Alpha scale that focus specific factor levels.
 #'
-#' @param focus_levels character vector with levels to focus.
-#' @param alpha_focus `alpha` for focused levels.
-#' @param alpha_other `alpha` for other levels.
+#' @param alpha_focus `alpha` value for focused levels.
+#' @param alpha_other `alpha` value for other levels.
 #'
 #' @examples
-#'  p <- ggplot(iris,aes(x = Petal.Length, y = Sepal.Length, alpha = Species)) + geom_point() +
-#'   scale_alpha_focus(focus_levels = "versicolor")
-#'  # Note this gives a warning because alpha doesn't always make sense with categorical variables.
+#'  ggplot(iris,aes(x = Petal.Length, y = Sepal.Length, alpha = Species)) +
+#'    geom_point() +
+#'    scale_alpha_focus(focus_levels = "versicolor")
 #'
 #' @author Victor Freguglia
 #'
 #' @export
-scale_alpha_focus <- function(focus_levels,
+scale_alpha_focus <- function(focus_levels = character(0),
                               alpha_focus = 1,
                               alpha_other = 0.05){
 
@@ -35,7 +34,7 @@ ggplot_add.ggfocus_alpha <- function(object, plot, object_name){
   var <- p1$mapping$alpha
 
   if(is.null(var)){
-    stop("'alpha' isn't mapped by any variable. Use '+ aes(alpha=...) + scale_alpha_focus(...)'.")
+    stop("'alpha' isn't mapped by any variable. Use '+ aes(alpha=...)' before setting the focus scale.")
   }
   data <- p1$data
   var_column <- data %>% select_(var) %>% lapply(as.character) %>% unlist()

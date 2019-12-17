@@ -1,4 +1,5 @@
-#' @title Focus scale for color aesthetics
+#' @name scale_focus
+#' @title Focus scales for `ggplot` objects
 #'
 #' @description Creates a color scale that focus on specific levels.
 #'
@@ -38,7 +39,7 @@ ggplot_add.ggfocus_color <- function(object, plot, object_name){
   var <- p1$mapping$colour
 
   if(is.null(var)){
-    message("'color' isn't mapped in any variable. Use 'aes(color=...)' before creating the focus scale.")
+    message("'color' isn't mapped in any variable. Use 'aes(color=...)' before setting the focus scale.")
     return(plot)
   }
   data <- p1$data
@@ -69,5 +70,4 @@ ggplot_add.ggfocus_color <- function(object, plot, object_name){
                                                      name = (var))
   return(p1)
 }
-
 

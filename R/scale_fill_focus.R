@@ -1,4 +1,4 @@
-#' scale_fill_focus
+#' @rdname scale_focus
 #'
 #' @description Color scale for `fill` aesthetics. This is an alternative use for \link{ggfocus} that uses the usual grammar of graphics.
 #'
@@ -13,7 +13,7 @@
 #' @author Victor Freguglia
 #'
 #' @export
-scale_fill_focus <- function(focus_levels,
+scale_fill_focus <- function(focus_levels = character(0),
                              color_focus = NULL,
                              color_other = "gray"){
 

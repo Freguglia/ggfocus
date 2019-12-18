@@ -1,7 +1,5 @@
 #' @rdname scale_focus
 #'
-#' @description Color scale for `fill` aesthetics.
-#'
 #' @examples
 #' ggplot(iris,aes(x = Petal.Length, group = Species, fill = Species)) +
 #'   geom_histogram() +
@@ -32,7 +30,7 @@ ggplot_add.ggfocus_fill <- function(object, plot, object_name){
   var <- p1$mapping$fill
 
   if(is.null(var)){
-    message("'fill' isn't mapped by any variable. Use 'aes(fill=...) + scale_fill_focus(...)")
+    message("'fill' isn't mapped by any variable. Use 'aes(fill = ...) + scale_fill_focus(...)")
     return(plot)
   }
 

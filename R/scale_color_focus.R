@@ -1,7 +1,7 @@
 #' @name scale_focus
 #' @title Focus scales for `ggplot` objects
 #'
-#' @description Creates a color scale that focus on specific levels.
+#' @description Scale that focus on specific levels.
 #'
 #' @param focus_levels character vector with levels to focus on.
 #' @param color_focus color(s) for focused levels (a single value or a vector
@@ -51,7 +51,7 @@ ggplot_add.ggfocus_color <- function(object, plot, object_name){
   var <- p1$mapping$colour
 
   if(is.null(var)){
-    message("'color' isn't mapped in any variable. Use 'aes(color=...)' before setting the focus scale.")
+    message("'color' isn't mapped in any variable. Use 'aes(color = ...)' before setting the focus scale.")
     return(plot)
   }
 

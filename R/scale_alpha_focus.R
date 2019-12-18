@@ -1,7 +1,5 @@
 #' @rdname scale_focus
 #'
-#' @description Alpha scale that focus specific factor levels.
-#'
 #' @param alpha_focus `alpha` value for focused levels. Defaults to 1.
 #' @param alpha_other `alpha` value for other levels. Defaults to 0.05.
 #'
@@ -33,7 +31,7 @@ ggplot_add.ggfocus_alpha <- function(object, plot, object_name){
   var <- p1$mapping$alpha
 
   if(is.null(var)){
-    stop("'alpha' isn't mapped by any variable. Use '+ aes(alpha=...)' before setting the focus scale.")
+    stop("'alpha' isn't mapped by any variable. Use '+ aes(alpha = ...)' before setting the focus scale.")
   }
 
   p1$data <- p1$data %>%
@@ -56,7 +54,7 @@ ggplot_add.ggfocus_alpha <- function(object, plot, object_name){
   alpha_values["Other"] <- alpha_other
 
   p1 <- p1 +
-    aes(alpha=.marker_alpha) +
+    aes(alpha = .marker_alpha) +
     scale_alpha_manual(values = alpha_values,
                        breaks=NULL)
   return(p1)

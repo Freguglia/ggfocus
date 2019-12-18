@@ -45,11 +45,7 @@ with the same length as the number of highlighted levels).}
 from RColorBrewer to pick colors.}
 }
 \description{
-Alpha scale that focus specific factor levels.
-
-Creates a color scale that focus on specific levels.
-
-Color scale for `fill` aesthetics.
+Scale that focus on specific levels.
 }
 \note{
 Use \code{RColorBrewer::display.brewer.all()} to see the palettes

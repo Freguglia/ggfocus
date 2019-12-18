@@ -1,13 +1,15 @@
 Package: ggfocus
 Type: Package
-Title: Focus on Specific Factor Levels in your ggplot()
+Title: Special Scales that Focus Specific Levels in your ggplot()
 Version: 0.9.9999
 Author: Victor Freguglia
 Maintainer: Victor Freguglia <victorfreguglia@gmail.com>
 BugReports: https://github.com/Freguglia/ggfocus/issues
 URL: https://github.com/Freguglia/ggfocus
-Description: A 'ggplot2' extension that provides tools for automatically focusing specific factor levels.
-License: MIT + file LICENSE
+Description: A 'ggplot2' extension that provides tools for automatically
+    creating scales that helps focusing on subgroups of the data plotted 
+    without removing the less important information.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2

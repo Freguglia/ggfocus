@@ -15,3 +15,5 @@ ggplot_add
 #' @rdname scale_focus
 #' @usage NULL
 scale_colour_focus <- scale_color_focus
+
+globalVariables(c(".marker_color", ".marker_fill", ".marker_alpha"))

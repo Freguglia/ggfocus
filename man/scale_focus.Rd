@@ -25,19 +25,21 @@ scale_color_focus(
 scale_fill_focus(
   focus_levels = character(0),
   color_focus = NULL,
-  color_other = "gray"
+  color_other = "gray",
+  palette_focus = "Set1"
 )
 }
 \arguments{
-\item{focus_levels}{character vector with levels to focus.}
+\item{focus_levels}{character vector with levels to focus on.}
 
-\item{alpha_focus}{`alpha` value for focused levels.}
+\item{alpha_focus}{`alpha` value for focused levels. Defaults to 1.}
 
-\item{alpha_other}{`alpha` value for other levels.}
+\item{alpha_other}{`alpha` value for other levels. Defaults to 0.05.}
 
-\item{color_focus}{`fill` color for focused levels.}
+\item{color_focus}{color(s) for focused levels (a single value or a vector
+with the same length as the number of highlighted levels).}
 
-\item{color_other}{`fill` color for other levels.}
+\item{color_other}{color for other levels.}
 
 \item{palette_focus}{If `color_focus` is not specified, provide a pelette
 from RColorBrewer to pick colors.}
@@ -47,23 +49,32 @@ Alpha scale that focus specific factor levels.
 
 Creates a color scale that focus on specific levels.
 
-Color scale for `fill` aesthetics. This is an alternative use for \link{ggfocus} that uses the usual grammar of graphics.
+Color scale for `fill` aesthetics.
+}
+\note{
+Use \code{RColorBrewer::display.brewer.all()} to see the palettes
+available.
 }
 \examples{
- ggplot(iris,aes(x = Petal.Length, y = Sepal.Length, alpha = Species)) +
-   geom_point() +
-   scale_alpha_focus(focus_levels = "versicolor")
+ggplot(iris,aes(x = Petal.Length, y = Sepal.Length, alpha = Species)) +
+ geom_point() +
+ scale_alpha_focus(focus_levels = "versicolor")
 
- ggplot(iris,aes(x = Petal.Length, y = Sepal.Length, color = Species)) +
+
+ggplot(iris, aes(x = Petal.Length, y = Sepal.Length, color = Species)) +
  geom_point() +
  scale_color_focus(focus_levels = "setosa", color_focus = "red")
 
- p <- ggplot(iris,aes(x = Petal.Length, group = Species, fill = Species)) + geom_histogram() +
+ggplot(iris, aes(x = Petal.Length, y = Sepal.Length, color = Species)) +
+ geom_point() +
+ scale_color_focus(focus_levels = c("setosa", "virginica"), color_focus = c("red", "blue"))
+
+ggplot(mtcars, aes(x = wt, y = mpg, color = rownames(mtcars))) +
+ geom_point() +
+ scale_color_focus(focus_levels = c("Mazda RX4", "Merc 230"), palette_focus = "Set2")
+
+ggplot(iris,aes(x = Petal.Length, group = Species, fill = Species)) +
+  geom_histogram() +
   scale_fill_focus(focus_levels = "versicolor", color_focus = "red")
 
-}
-\author{
-Victor Freguglia
-
-Victor Freguglia
 }

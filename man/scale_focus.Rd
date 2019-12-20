@@ -33,7 +33,7 @@ scale_fill_focus(
 
 scale_shape_focus(
   focus_levels = character(0),
-  shape_focus = 3,
+  shape_focus = 8,
   shape_other = 1
 )
 

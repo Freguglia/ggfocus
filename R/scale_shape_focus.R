@@ -1,6 +1,6 @@
 #' @rdname scale_focus
 #'
-#' @param shape_focus `shape` value for focused levels. Defaults to 3.
+#' @param shape_focus `shape` value for focused levels. Defaults to 8.
 #' @param shape_other `shape` value for other levels. Defaults to 1.
 #'
 #' @examples

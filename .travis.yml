@@ -1,1 +1,19 @@
-﻿language: r
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
+language: R
+sudo: false
+dist: trusty
+cache: packages
+latex: false
+warnings_are_errors: false
+os:
+  - osx
+  - linux
+r:
+  - release
+  - devel
+
+matrix:
+  exclude:
+  - os: osx
+    r: devel

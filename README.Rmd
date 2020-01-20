@@ -4,7 +4,7 @@ author: "Victor Freguglia"
 output: md_document
 ---
 
-# ggfocus
+# ggfocus <img src='man/figures/logo.png' align="right" height="200" />
 
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(

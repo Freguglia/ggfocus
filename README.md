@@ -34,7 +34,7 @@ Installing ggfocus
 ------------------
 
 The package is available on CRAN, but you can also install the latest
-version from github with [devtools](https://github.com/hadley/devtools).
+version from Github with [devtools](https://github.com/hadley/devtools).
 
     devtools::install_github("Freguglia/ggfocus") # Latest version
     install.packages("ggfocus") # CRAN version

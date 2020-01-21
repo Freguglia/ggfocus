@@ -12,19 +12,23 @@ status](http://www.r-pkg.org/badges/version-last-release/ggfocus)](https://cran.
 Introduction
 ------------
 
-Many times during data analysis, one may want to visualize data for a
-specific subgroup of observations. While ggplot is great for data
-visualization in general, constructing graphics that focus on those
-subgroups may need very troublesome manipulation of data and graphical
-scales (for example colors), i.e. setting low alpha for unimportant
-observations, coloring things in a way that highlights the focus
-subgroup, etc.
+In data analysis, one may want to visualize data for a specific subgroup
+of observations. Simply filtering out observations that do not belong to
+the subgroup may take the information out of context. Therefore, it is
+necessary to have tools that allow the analyst to draw attention (focus)
+on that subgroup within the complete relevant information available.
 
-**ggfocus** allows you to build graphics that focus on those specific
+While `ggplot2` is a great tool for data visualization in general,
+constructing graphics that focus on those subgroups may need very
+troublesome manipulation of data and graphical scales (for example
+colors) together, i.e. setting low alpha for unimportant observations,
+coloring things in a way that highlights the focused subgroup, etc.
+
+`ggfocus` allows you to build graphics that focus on those specific
 subgroups by doing the scale manipulation automatically while keeping
-all the flexibility from ggplot. The idea behind this approach is from
+all the flexibility from `ggplot.` The idea behind this package is from
 [this](https://github.com/tidyverse/ggplot2/issues/2627) issue from
-tidyverse/ggplot2.
+`tidyverse/ggplot2`.
 
 Installing ggfocus
 ------------------
@@ -38,82 +42,62 @@ version from github with [devtools](https://github.com/hadley/devtools).
 Usage
 -----
 
-*ggfocus* implements the `ggfocus()` function.
+The workflow of `ggfocus` is the same as any `ggplot` graphic with the
+addition of the **focus scales** family of functions:
 
-    ggfocus(p, var, focus_levels, focus_aes = c("color", "alpha"),
-      color_focus = NULL, color_other = "black", alpha_focus = 1,
-      alpha_other = 0.05)
+-   `scale_color_focus(focus_levels = character(0), color_focus = NULL, color_other = "black", palette_focus = "Set1")`
+-   `scale_fill_focus(focus_levels = character(0), color_focus = NULL, color_other = "gray", palette_focus = "Set1")`
+-   `scale_alpha_focus(focus_levels = character(0), alpha_focus = 1, alpha_other = .05)`
+-   `scale_linetype_focus(focus_levels = character(0), linetype_focus = 1, linetype_other = 3)`
+-   `scale_shape_focus(focus_levels = character(0), shape_focus = 8, shape_other = 1)`
+-   `scale_size_focus(focus_levels = character(0), size_focus = 3, size_other = 1)`
 
--   `p`: a ggplot.
--   `var`: the factor variable that you want to specify levels to focus
-    (note that this can be a numeric variable that represents a factor,
-    i.e., you gave an integer number to each ‘level’, like an integer ID
-    or a character variable).
--   `focus_levels`: a vector of levels (either character or numeric) to
-    highlight.
--   `focus_aes`: which aesthetics should be used to highlight the
-    levels. Currently only `color`, `alpha` and `fill` are available. A
-    character vector is expected.
--   `color_focus`: what color selected levels should have? It can be
-    either one color (all equal) or character vector with one color for
-    each level. This affects both `color` and `fill`.
--   `color_other`: color for levels not selected.
--   `alpha_focus` and `alpha_other`: alpha for selcted and not selected
-    levels, respectively.
+The user should map the variable with the grouping variable to all the
+`aes` used to highlight observations and then use these functions to
+automatically create scales that highlight a specified group of
+observations.
 
-You can also use the usual `ggplot2` grammar `+` to add scales with the
-family of function `scale_*_focus()`. These two uses are equivalent,
-read the [vignette](vignettes/a-quick-guide-to-ggfocus.html) for more
-information.
+Both the selected and unselected groups characteristics are customizable
+with the parameters of focus scales. See the examples below.
 
 Examples
 --------
 
-In the `gapminder` dataset, first we create a simple `ggplot`
-
-    library(ggplot2)
-    library(gapminder)
-    p <- ggplot(gapminder, aes(x=log(gdpPercap), y=lifeExp, group=country)) + geom_line()
-    p
-
-![](man/figures/README-ex1_create-1.png)
-
-Now we can use *ggfocus()* to highlight European countries only.
+Creating an example dataset.
 
     library(ggfocus)
-    ggfocus(p, continent, "Europe")
+    set.seed(1)
+    # Create an example dataset
+    df <- data.frame(u1 = runif(300), 
+                     u2 = runif(300),
+                     grp = sample(LETTERS[1:10], 300, replace = TRUE))
+    dplyr::glimpse(df)
+    #> Observations: 300
+    #> Variables: 3
+    #> $ u1  <dbl> 0.26550866, 0.37212390, 0.57285336, 0.90820779, 0.20168193, 0.898…
+    #> $ u2  <dbl> 0.67371223, 0.09485786, 0.49259612, 0.46155184, 0.37521653, 0.991…
+    #> $ grp <fct> C, E, B, E, E, C, J, B, G, H, B, J, G, A, I, H, F, F, C, J, A, F,…
 
-![](man/figures/README-unnamed-chunk-2-1.png)
+Visualizing with focus on observations such that `grp` is `A` or `B`.
 
-We can also highlight countries
+    ggplot(df, aes(x = u1, y = u2, color = grp, alpha = grp)) +
+      geom_point() +
+      scale_color_focus(c("A", "B"), color_focus = c("blue", "red")) +
+      scale_alpha_focus(c("A", "B"))
 
-    ggfocus(p, country, c("Brazil","Argentina"), color_focus = c("Green","Blue"))
-
-![](man/figures/README-unnamed-chunk-3-1.png)
+![](man/figures/README-example_2-1.png)
 
 ### Interaction with other extensions
 
-Because `ggfocus()` retuns a modified `ggplot` object and only controls
+Since `ggfocus` creates the focused visualization solely by controlling
 scales, other `ggplot` extensions and types of graphics can interact
-with it the same way, an example with `maps` is shown below.
+with it the same way, an example with the `maps` package is shown below.
 
     library(maps)
-
     wm <- map_data("world")
-    p <- ggplot(wm, aes(x=long, y = lat, group = group)) + geom_polygon(color="black") + theme_void()
-    ggfocus(p, region, c("Brazil","India","Italy","Canada"),focus_aes = c("fill","alpha"),
-            color_focus = "blue", alpha_other = 0.15) + guides(fill=FALSE)
+    ggplot(wm, aes(x=long, y = lat, group = group, fill = region)) + 
+      geom_polygon(color="black") +
+      theme_void() +
+      scale_fill_focus(c("Brazil", "Canada", "Australia", "India"), color_other = "gray")
 
-![](man/figures/README-unnamed-chunk-4-1.png)
-
-Contributing and Bug Reports
-============================
-
--   If you find any unexpected result or bug, please file an issue with
-    a reproducible example.
--   For new features, for example, the addition of the focus scale for a
-    new aesthetics, file and issue and add and example or a brief
-    explanation with important aspects for the focus scale of this new
-    aesthetics.
--   If you want to contribute somehow, please contact me or file an
-    issue so we can coordinate.
+![](man/figures/README-example_map-1.png)

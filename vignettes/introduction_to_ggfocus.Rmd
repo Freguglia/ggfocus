@@ -1,0 +1,136 @@
+---
+title: "Introduction to ggfocus"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{introduction_to_ggfocus}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 6,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+```{r setup, echo = FALSE}
+library(ggfocus)
+```
+
+## Introduction
+
+`ggfocus` is a `ggplot2` extension that allows the creation of special scales
+with the purpose of highlighting subgroups of data. The user is able to define
+what levels of mapped variables should be selected and
+how the selected subroup should be displayed as well as the unselected subgroup.
+
+### An example
+
+We shall create a sample dataset to be used throughout this guide: the variables
+`u1` and `u2` are numeric values and `grp` is a factor variable with values in
+`A`, `B`, \dots, `J`.
+
+```{r create_example}
+set.seed(2)
+# Create an example dataset
+df <- data.frame(u1 = runif(300) + 1*rbinom(300, size = 1, p = 0.01), 
+                 u2 = runif(300),
+                 grp = sample(LETTERS[1:10], 300, replace = TRUE))
+dplyr::glimpse(df)
+```
+A natural type of visualization should be mapping `u1` and `u2` to the `x` and `y` axes and mapping `grp` to color.
+
+```{r bad_plot}
+ggplot(df, aes(x = u1, y = u2, color = grp)) + 
+  geom_point()
+```
+
+#### The problem
+
+Suppose you want focus the analysis on the levels `A` and `B`. It is not easy to
+identify where the points are because there is a lot of "noise" in the colors
+used due to the amount of levels of `grp`. A simple solution would be filtering 
+out other groups.
+
+```{r bad_filter}
+library(dplyr)
+df %>% 
+  filter(grp %in% c("A", "B")) %>%
+  ggplot(aes(x = u1, y = u2, color = grp)) +
+  geom_point()
+```
+
+While it solves the problems of too many colors making the viewer unable to quickly locate points of `A` and `B` and differentiate them, we did lose important information during the filtering, e.g., there are only 4 observations with `u1`
+greater than 1, and 3 of them are in the `grp` `A` or `B`. This is an important 
+information contained in the data that should be considered when the analysis 
+focuses on `A` and `B` but require the other observations (a **context**) in 
+order to be obtained. Therefore, we want to focus on specific levels without 
+taking them out of the **context** of the data.
+
+#### The solution
+
+The solution to focus the analysis in the subgroup and keep the context is to
+use all the data but group each "unfocused" level in a new level and manipulate
+scales. This requires data wrangling and scale manipulation.
+
+```{r}
+df %>%
+  mutate(grp = ifelse(grp %in% c("A", "B"), as.character(grp), "other")) %>%
+  ggplot(aes(x = u1, y = u2, color = grp)) +
+  geom_point() +
+  scale_color_manual(values = c("A" = "red", "B" = "blue", "other" = "gray"))
+```
+
+This is a solution to the visualization but it required us to: 
+  
+  * use additional data wrangling functions. 
+  * Priorly knowing that the set of colors `"red"`, `"blue"` and `"gray"` resulted in a focus on `"red"` and `"blue"`, therefore the `"gray"` color is the one that should be used on the unselected group.
+  * Type more.
+  
+### The goal of ggfocus
+
+`ggfocus` has the goal of creating graphs that focus on a subgroup of the data
+like the one in the previous example, but without the three drawbacks mentioned.
+No data wrangling is required (it is all done internally), good scales for
+focusing on the subgroup are automatically created by default and as a result it
+is less verbose than selecting scales manually.
+
+Not only `color` scales are available, but also scales for every other `aes` in
+`ggplot`: `fill`, `alpha`, `size`, `linetype`, `shape`, etc. Making it easy to
+guide the viewer towards the information to focus on using the most appropriate
+aesthetics for each graph.
+
+The fact that `ggfocus` manipulates scales only, makes it usable with other 
+extensions of `ggplot`. Examples using each scale are provided in this guide.
+
+## ggfocus usage
+
+### `color` and `fill`
+
+### `alpha`
+
+### `linetype`
+
+### `shape`
+
+```{r}
+ggplot(df, aes(x = u1, y = u2, shape = grp)) + 
+  geom_point() +
+  scale_shape_focus(c("A", "B"))
+```
+
+
+### `size`
+
+```{r usage_size}
+ggplot(df, aes(x = u1, y = u2, size = grp)) + 
+  geom_text(aes(label = grp)) +
+  scale_size_focus(c("A", "B"))
+```
+
+
+## Interaction with other extensions

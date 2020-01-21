@@ -8,7 +8,7 @@ BugReports: https://github.com/Freguglia/ggfocus/issues
 URL: https://github.com/Freguglia/ggfocus
 Description: A 'ggplot2' extension that provides tools for automatically
     creating scales that helps focusing on subgroups of the data plotted 
-    without removing the less important information.
+    without losing other information.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

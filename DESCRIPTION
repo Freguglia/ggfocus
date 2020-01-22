@@ -1,13 +1,13 @@
 Package: ggfocus
 Type: Package
-Title: Special Scales that Focus Specific Levels in your ggplot()
-Version: 1.0.9000
+Title: Scales that Focus Specific Levels in your ggplot()
+Version: 1.0.0
 Authors@R: person("Victor", "Fregugglia", email = "victorfreguglia@gmail.com",
                   role = c("aut", "cre"))
 BugReports: https://github.com/Freguglia/ggfocus/issues
 URL: https://github.com/Freguglia/ggfocus
 Description: A 'ggplot2' extension that provides tools for automatically
-    creating scales that helps focusing on subgroups of the data plotted 
+    creating scales to focus on subgroups of the data plotted 
     without losing other information.
 License: GPL-3
 Encoding: UTF-8

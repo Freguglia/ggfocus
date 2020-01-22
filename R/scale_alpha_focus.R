@@ -4,16 +4,14 @@
 #' @param alpha_other `alpha` value for other levels. Defaults to 0.05.
 #'
 #' @examples
-#' ggplot(iris,aes(x = Petal.Length, y = Sepal.Length, alpha = Species)) +
+#' ggplot(iris, aes(x = Petal.Length, y = Sepal.Length, alpha = Species)) +
 #'  geom_point() +
 #'  scale_alpha_focus(focus_levels = "versicolor")
 #'
 #'
 #' @export
-scale_alpha_focus <- function(focus_levels = character(0),
-                              alpha_focus = 1,
-                              alpha_other = 0.05){
-
+scale_alpha_focus <- function(focus_levels, alpha_focus = 1,
+                              alpha_other = 0.2){
   structure(list(focus_levels = focus_levels,
                  alpha_focus = alpha_focus,
                  alpha_other = alpha_other),

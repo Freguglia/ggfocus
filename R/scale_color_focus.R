@@ -27,11 +27,8 @@
 #'  scale_color_focus(focus_levels = c("Mazda RX4", "Merc 230"), palette_focus = "Set2")
 #'
 #' @export
-scale_color_focus <- function(focus_levels = character(0),
-                              color_focus = NULL,
-                              color_other = "black",
-                              palette_focus = "Set1"){
-
+scale_color_focus <- function(focus_levels, color_focus = NULL,
+                              color_other = "gray", palette_focus = "Set1"){
   structure(list(focus_levels = focus_levels,
                  color_focus = color_focus,
                  color_other = color_other,

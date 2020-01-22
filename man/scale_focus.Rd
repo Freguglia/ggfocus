@@ -13,39 +13,27 @@
 \alias{scale_colour_focus}
 \title{Focus scales for `ggplot` objects}
 \usage{
-scale_alpha_focus(
-  focus_levels = character(0),
-  alpha_focus = 1,
-  alpha_other = 0.05
-)
+scale_alpha_focus(focus_levels, alpha_focus = 1, alpha_other = 0.2)
 
 scale_color_focus(
-  focus_levels = character(0),
-  color_focus = NULL,
-  color_other = "black",
-  palette_focus = "Set1"
-)
-
-scale_fill_focus(
-  focus_levels = character(0),
+  focus_levels,
   color_focus = NULL,
   color_other = "gray",
   palette_focus = "Set1"
 )
 
-scale_linetype_focus(
-  focus_levels = character(0),
-  linetype_focus = 1,
-  linetype_other = 3
+scale_fill_focus(
+  focus_levels,
+  color_focus = NULL,
+  color_other = "gray",
+  palette_focus = "Set1"
 )
 
-scale_shape_focus(
-  focus_levels = character(0),
-  shape_focus = 8,
-  shape_other = 1
-)
+scale_linetype_focus(focus_levels, linetype_focus = 1, linetype_other = 3)
 
-scale_size_focus(focus_levels = character(0), size_focus = 3, size_other = 1)
+scale_shape_focus(focus_levels, shape_focus = 8, shape_other = 1)
+
+scale_size_focus(focus_levels, size_focus = 3, size_other = 1)
 }
 \arguments{
 \item{focus_levels}{character vector with levels to focus on.}
@@ -83,7 +71,7 @@ Use \code{RColorBrewer::display.brewer.all()} to see the palettes
 available.
 }
 \examples{
-ggplot(iris,aes(x = Petal.Length, y = Sepal.Length, alpha = Species)) +
+ggplot(iris, aes(x = Petal.Length, y = Sepal.Length, alpha = Species)) +
  geom_point() +
  scale_alpha_focus(focus_levels = "versicolor")
 

@@ -5,10 +5,8 @@
 #' @param linetype_other `linetype` value for other levels. Defaults to 3.
 #'
 #' @export
-scale_linetype_focus <- function(focus_levels = character(0),
-                             linetype_focus = 1,
-                             linetype_other = 3){
-
+scale_linetype_focus <- function(focus_levels, linetype_focus = 1,
+                                 linetype_other = 3){
   structure(list(focus_levels = focus_levels,
                  linetype_focus = linetype_focus,
                  linetype_other = linetype_other),
@@ -38,15 +36,16 @@ ggplot_add.ggfocus_linetype <- function(object, plot, object_name){
   }
 
   if(sum(p1$data$.marker_linetype != "Other") == 0){
-    message("There are no observations selected. Are the levels misspelled? Is the correct variable mapped to 'alpha'?")
+    message("There are no observations selected. Are the levels misspelled? Is the correct variable mapped to 'linetype'?")
   }
 
 
   n_levels <- p1$data$.marker_linetype %>% unique() %>% length()
 
-  linetype_values <- rep(linetype_focus, n_levels)
+  linetype_values <- numeric(n_levels)
   names(linetype_values) <- p1$data$.marker_linetype %>% unique()
   linetype_values["Other"] <- linetype_other
+  linetype_values[names(shape_values) != "Other"] <- shape_focus
 
   p1 <- p1 +
     aes(linetype = .marker_linetype) +

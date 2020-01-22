@@ -10,7 +10,7 @@
 #'
 #'
 #' @export
-scale_shape_focus <- function(focus_levels = character(0),
+scale_shape_focus <- function(focus_levels,
                              shape_focus = 8,
                              shape_other = 1){
 
@@ -43,15 +43,17 @@ ggplot_add.ggfocus_shape <- function(object, plot, object_name){
   }
 
   if(sum(p1$data$.marker_shape != "Other") == 0){
-    message("There are no observations selected. Are the levels misspelled? Is the correct variable mapped to 'alpha'?")
+    message("There are no observations selected. Are the levels misspelled? Is the correct variable mapped to 'shape'?")
   }
 
 
   n_levels <- p1$data$.marker_shape %>% unique() %>% length()
 
-  shape_values <- rep(shape_focus, n_levels)
+
+  shape_values <- numeric(n_levels)
   names(shape_values) <- p1$data$.marker_shape %>% unique()
   shape_values["Other"] <- shape_other
+  shape_values[names(shape_values) != "Other"] <- shape_focus
 
   p1 <- p1 +
     aes(shape = .marker_shape) +

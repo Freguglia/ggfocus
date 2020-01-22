@@ -6,11 +6,8 @@
 #'   scale_fill_focus(focus_levels = "versicolor", color_focus = "red")
 #'
 #' @export
-scale_fill_focus <- function(focus_levels = character(0),
-                             color_focus = NULL,
-                             color_other = "gray",
-                             palette_focus = "Set1"){
-
+scale_fill_focus <- function(focus_levels, color_focus = NULL,
+                             color_other = "gray", palette_focus = "Set1"){
   structure(list(focus_levels = focus_levels,
                  color_focus = color_focus,
                  color_other = color_other,

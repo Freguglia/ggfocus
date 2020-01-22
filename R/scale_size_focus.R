@@ -10,7 +10,7 @@
 #'
 #'
 #' @export
-scale_size_focus <- function(focus_levels = character(0),
+scale_size_focus <- function(focus_levels,
                               size_focus = 3,
                               size_other = 1){
 

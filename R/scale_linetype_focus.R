@@ -45,7 +45,7 @@ ggplot_add.ggfocus_linetype <- function(object, plot, object_name){
   linetype_values <- numeric(n_levels)
   names(linetype_values) <- p1$data$.marker_linetype %>% unique()
   linetype_values["Other"] <- linetype_other
-  linetype_values[names(shape_values) != "Other"] <- shape_focus
+  linetype_values[names(linetype_values) != "Other"] <- linetype_focus
 
   p1 <- p1 +
     aes(linetype = .marker_linetype) +

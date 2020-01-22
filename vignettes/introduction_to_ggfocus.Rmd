@@ -1,6 +1,8 @@
 ---
 title: "Introduction to ggfocus"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{introduction_to_ggfocus}
   %\VignetteEngine{knitr::rmarkdown}
@@ -21,7 +23,7 @@ knitr::opts_chunk$set(
 library(ggfocus)
 ```
 
-## Introduction
+# Introduction
 
 `ggfocus` is a `ggplot2` extension that allows the creation of special scales
 with the purpose of highlighting subgroups of data. The user is able to define
@@ -49,7 +51,7 @@ ggplot(df, aes(x = u1, y = u2, color = grp)) +
   geom_point()
 ```
 
-#### The problem
+### The problem
 
 Suppose you want focus the analysis on the levels `A` and `B`. It is not easy to
 identify where the points are because there is a lot of "noise" in the colors
@@ -71,13 +73,13 @@ focuses on `A` and `B` but require the other observations (a **context**) in
 order to be obtained. Therefore, we want to focus on specific levels without 
 taking them out of the **context** of the data.
 
-#### The solution
+### The solution
 
 The solution to focus the analysis in the subgroup and keep the context is to
 use all the data but group each "unfocused" level in a new level and manipulate
 scales. This requires data wrangling and scale manipulation.
 
-```{r}
+```{r base_solution}
 df %>%
   mutate(grp = ifelse(grp %in% c("A", "B"), as.character(grp), "other")) %>%
   ggplot(aes(x = u1, y = u2, color = grp)) +
@@ -107,30 +109,163 @@ aesthetics for each graph.
 The fact that `ggfocus` manipulates scales only, makes it usable with other 
 extensions of `ggplot`. Examples using each scale are provided in this guide.
 
-## ggfocus usage
+# ggfocus usage
 
-### `color` and `fill`
+## `color` and `fill`
 
-### `alpha`
+```{r color_focus_usage, eval = FALSE}
+scale_color_focus(focus_levels, color_focus = NULL, 
+                  color_other = "gray", palette_focus = "Set1")
 
-### `linetype`
+scale_fill_focus(focus_levels, color_focus = NULL,
+  color_other = "gray", palette_focus = "Set1")
+```
 
-### `shape`
 
-```{r}
+`color` and `fill` scales have the same default focus scales. They use the color
+`"gray"` for unselected observations and the `"Set1"` palette. Usually, a
+qualitative color scale is best to visualize the levels focused. The available
+palettes can be viewed with `RColorBrewer::display.brewer.all()`.
+
+```{r example_color}
+ggplot(df, aes(x = u1, y = u2, color = grp)) +
+  geom_point() +
+  scale_color_focus(c("A", "B"))
+
+ggplot(iris, aes(x = Petal.Length, fill = Species)) + 
+  geom_histogram() +
+  scale_fill_focus("virginica")
+```
+
+One may also use a single color in the `color_focus` argument to make all the
+highlighted levels use the same color value. This allows to focus on the subroup
+as a whole instead of in its individual levels.
+
+```{r example_onecolor}
+ggplot(df, aes(x = u1, y = u2, color = grp)) +
+  geom_point() +
+  scale_color_focus(c("A", "B"), color_focus = "red")
+```
+
+## `alpha`
+
+```{r alpha_focus_usage, eval = FALSE}
+scale_alpha_focus(focus_levels, alpha_focus = 1, alpha_other = 0.2)
+```
+
+`alpha` is probably one of the most important `aes` when drawing focus to 
+specific subroups of your data as the transparency naturally removes the 
+importance given to certain elements. It does not distinguish different groups, 
+therefore it is usually used as a secondary highlighting scale. The argument 
+`alpha_other` can be used to control the visibility if the unselected 
+observations.
+
+```{r example_alpha}
+ggplot(df, aes(x = u1, y = u2, alpha = grp)) +
+  geom_point() +
+  scale_alpha_focus(c("A", "B")) # Does not distinguish A and B.
+```
+
+```{r example_alpha_color}
+ggplot(df, aes(x = u1, y = u2, alpha = grp, color = grp)) +
+  geom_point() +
+  scale_alpha_focus(c("A", "B"), alpha_other = 0.5) +
+  scale_color_focus(c("A", "B")) +
+  theme_bw() # White background
+```
+
+## `linetype`
+
+```{r usage_linetype, eval = FALSE}
+scale_linetype_focus(focus_levels, linetype_focus = 1, linetype_other = 3)
+```
+
+By default, a continuous line is used for focused levels and dotted line for
+other levels. Similar to `color`, one can pass a vector of values in
+`linetype_focus` to create different linetypes for each highlighted subgroup
+although the highest contrast is between continuous and dotted lines.
+
+```{r example_linetype}
+ggplot(datasets::airquality, aes(x = Day, y = Temp, linetype = factor(Month),
+                                 group = factor(Month))) + 
+  geom_line() +
+  scale_linetype_focus(focus_levels = c(5,7))
+```
+
+```{r example_linetype2}
+ggplot(datasets::airquality, aes(x = Day, y = Temp, linetype = factor(Month),
+                                 group = factor(Month))) + 
+  geom_line() +
+  scale_linetype_focus(focus_levels = c(5,7), linetype_focus = c(1,5))
+```
+
+## `shape`
+
+```{r usage_shape, eval = FALSE}
+scale_shape_focus(focus_levels, shape_focus = 8, shape_other = 1)
+```
+
+Not to useful to focus on subroups, but it is available. Works just like 
+`linetype`.
+
+```{r example_shape}
 ggplot(df, aes(x = u1, y = u2, shape = grp)) + 
   geom_point() +
   scale_shape_focus(c("A", "B"))
 ```
 
+```{r example_shape2}
+ggplot(df, aes(x = u1, y = u2, shape = grp)) + 
+  geom_point() +
+  scale_shape_focus(c("A", "B"), shape_focus = c(2,3))
+```
 
-### `size`
+## `size`
 
-```{r usage_size}
+```{r usage_size, eval = FALSE}
+scale_size_focus(focus_levels, size_focus = 3, size_other = 1)
+```
+
+Have similar properties as `alpha`, but using the size of the elements instead
+to reduce importance instead of transparency.
+
+```{r example_usage}
 ggplot(df, aes(x = u1, y = u2, size = grp)) + 
   geom_text(aes(label = grp)) +
   scale_size_focus(c("A", "B"))
 ```
 
+```{r usage_size_point}
+ggplot(df, aes(x = u1, y = u2, size = grp, shape = grp)) + 
+  geom_point() +
+  scale_size_focus(c("A", "B")) +
+  scale_shape_focus(c("A", "B"))
+```
 
 ## Interaction with other extensions
+
+The main advantage of ggfocus lies in the fact it only manipulates scales to
+create the focus in the graphs. This fact allows it to interact with other 
+`ggplot` extensions naturally, as it will work with any type of `geom`.
+
+Some examples are below:
+
+```{r example_ggrepel}
+library(dplyr)
+library(ggrepel)
+iris %>% 
+  mutate(id = row_number()) %>%
+  ggplot(aes(x = Petal.Length, y = Sepal.Length, label = id, size = id)) +
+  geom_text_repel() +
+  scale_size_focus(c(100,127), size_focus = 8, size_other = 2)
+```
+
+```{r example_maps}
+library(maps)
+wm <- map_data("world")
+ggplot(wm, aes(x=long, y = lat, group = group, fill = region)) + 
+  geom_polygon(color="black") +
+  theme_void() +
+  scale_fill_focus(c("Brazil", "Canada", "Australia", "India"), color_other = "gray")
+```
+

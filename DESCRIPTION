@@ -2,7 +2,7 @@ Package: ggfocus
 Type: Package
 Title: Scales that Focus Specific Levels in your ggplot()
 Version: 1.0.0
-Authors@R: person("Victor", "Fregugglia", email = "victorfreguglia@gmail.com",
+Authors@R: person("Victor", "Freguglia", email = "victorfreguglia@gmail.com",
                   role = c("aut", "cre"))
 BugReports: https://github.com/Freguglia/ggfocus/issues
 URL: https://github.com/Freguglia/ggfocus

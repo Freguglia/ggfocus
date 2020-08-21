@@ -72,20 +72,33 @@ Creating an example dataset.
                      u2 = runif(300),
                      grp = sample(LETTERS[1:10], 300, replace = TRUE))
     dplyr::glimpse(df)
-    #> Observations: 300
-    #> Variables: 3
+    #> Rows: 300
+    #> Columns: 3
     #> $ u1  <dbl> 0.26550866, 0.37212390, 0.57285336, 0.90820779, 0.20168193, 0.898…
     #> $ u2  <dbl> 0.67371223, 0.09485786, 0.49259612, 0.46155184, 0.37521653, 0.991…
-    #> $ grp <fct> C, E, B, E, E, C, J, B, G, H, B, J, G, A, I, H, F, F, C, J, A, F,…
+    #> $ grp <chr> "C", "E", "B", "E", "E", "C", "J", "B", "G", "H", "B", "J", "G", …
 
-Visualizing with focus on observations such that `grp` is `A` or `B`.
+Suppose that we are mainly interested in groups `A` and `B`, but we do
+not want to lose the `u1` and `u2` information from other groups.
+Visualizing with focus on observations such that `grp` is `A` or `B` is
+shown below.
 
+    # Default scales
+    ggplot(df, aes(x = u1, y = u2, color = grp)) +
+      geom_point() +
+      ggtitle("Standard Scales")
+
+<img src="man/figures/README-example_2-1.png" width="50%" />
+
+
+    # Focus scales
     ggplot(df, aes(x = u1, y = u2, color = grp, alpha = grp)) +
       geom_point() +
       scale_color_focus(c("A", "B"), color_focus = c("blue", "red")) +
-      scale_alpha_focus(c("A", "B"))
+      scale_alpha_focus(c("A", "B")) +
+      ggtitle("Focus Scales")
 
-![](man/figures/README-example_2-1.png)
+<img src="man/figures/README-example_2-2.png" width="50%" />
 
 ### Interaction with other extensions
 

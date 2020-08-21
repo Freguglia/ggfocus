@@ -68,13 +68,20 @@ df <- data.frame(u1 = runif(300),
 dplyr::glimpse(df)
 ```
 
-Visualizing with focus on observations such that `grp` is `A` or `B`.
+Suppose that we are mainly interested in groups `A` and `B`, but we do not want to lose the `u1` and `u2` information from other groups. Visualizing with focus on observations such that `grp` is `A` or `B` is shown below.
 
-```{r example_2}
+```{r example_2, out.width = "50%", results='hold'}
+# Default scales
+ggplot(df, aes(x = u1, y = u2, color = grp)) +
+  geom_point() +
+  ggtitle("Standard Scales")
+
+# Focus scales
 ggplot(df, aes(x = u1, y = u2, color = grp, alpha = grp)) +
   geom_point() +
   scale_color_focus(c("A", "B"), color_focus = c("blue", "red")) +
-  scale_alpha_focus(c("A", "B"))
+  scale_alpha_focus(c("A", "B")) +
+  ggtitle("Focus Scales")
 ```
 
 

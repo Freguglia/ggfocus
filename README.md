@@ -1,14 +1,13 @@
-ggfocus
-================
-Victor Freguglia
 
 # ggfocus <img src='man/figures/logo.png' align="right" height="200" />
 
 <!-- badges: start -->
 
-[![check-release](https://github.com/Freguglia/ggfocus/actions/workflows/check-release.yaml/badge.svg)](https://github.com/Freguglia/ggfocus/actions/workflows/check-release.yaml)
+[![Build
+Status](https://travis-ci.org/Freguglia/ggfocus.svg?branch=master)](https://travis-ci.org/Freguglia/ggfocus)
 [![CRAN
 status](http://www.r-pkg.org/badges/version-last-release/ggfocus)](https://cran.r-project.org/package=ggfocus)
+[![check-release](https://github.com/Freguglia/ggfocus/actions/workflows/check-release.yaml/badge.svg)](https://github.com/Freguglia/ggfocus/actions/workflows/check-release.yaml)
 <!-- badges: end -->
 
 ## Introduction

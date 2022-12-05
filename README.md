@@ -1,16 +1,14 @@
-ggfocus <img src='man/figures/logo.png' align="right" height="200" />
-=====================================================================
+
+# ggfocus <img src='man/figures/logo.png' align="right" height="200" />
 
 <!-- badges: start -->
 
-[![Build
-Status](https://travis-ci.org/Freguglia/ggfocus.svg?branch=master)](https://travis-ci.org/Freguglia/ggfocus)
+[![check-release](https://github.com/Freguglia/ggfocus/actions/workflows/check-release.yaml/badge.svg)](https://github.com/Freguglia/ggfocus/actions/workflows/check-release.yaml)
 [![CRAN
 status](http://www.r-pkg.org/badges/version-last-release/ggfocus)](https://cran.r-project.org/package=ggfocus)
 <!-- badges: end -->
 
-Introduction
-------------
+## Introduction
 
 In data analysis, one may want to visualize data for a specific subgroup
 of observations. Simply filtering out observations that do not belong to
@@ -30,17 +28,17 @@ all the flexibility from `ggplot.` The idea behind this package is from
 [this](https://github.com/tidyverse/ggplot2/issues/2627) issue from
 `tidyverse/ggplot2`.
 
-Installing ggfocus
-------------------
+## Installing ggfocus
 
 The package is available on CRAN, but you can also install the latest
 version from Github with [devtools](https://github.com/hadley/devtools).
 
-    devtools::install_github("Freguglia/ggfocus") # Latest version
-    install.packages("ggfocus") # CRAN version
+``` r
+devtools::install_github("Freguglia/ggfocus") # Latest version
+install.packages("ggfocus") # CRAN version
+```
 
-Usage
------
+## Usage
 
 The workflow of `ggfocus` is the same as any `ggplot` graphic with the
 addition of the **focus scales** family of functions:
@@ -60,43 +58,47 @@ observations.
 Both the selected and unselected groups characteristics are customizable
 with the parameters of focus scales. See the examples below.
 
-Examples
---------
+## Examples
 
 Creating an example dataset.
 
-    library(ggfocus)
-    set.seed(1)
-    # Create an example dataset
-    df <- data.frame(u1 = runif(300), 
-                     u2 = runif(300),
-                     grp = sample(LETTERS[1:10], 300, replace = TRUE))
-    dplyr::glimpse(df)
-    #> Rows: 300
-    #> Columns: 3
-    #> $ u1  <dbl> 0.26550866, 0.37212390, 0.57285336, 0.90820779, 0.20168193, 0.898…
-    #> $ u2  <dbl> 0.67371223, 0.09485786, 0.49259612, 0.46155184, 0.37521653, 0.991…
-    #> $ grp <chr> "C", "E", "B", "E", "E", "C", "J", "B", "G", "H", "B", "J", "G", …
+``` r
+library(ggfocus)
+set.seed(1)
+# Create an example dataset
+df <- data.frame(u1 = runif(300),
+                 u2 = runif(300),
+                 grp = sample(LETTERS[1:10], 300, replace = TRUE))
+dplyr::glimpse(df)
+#> Rows: 300
+#> Columns: 3
+#> $ u1  <dbl> 0.26550866, 0.37212390, 0.57285336, 0.90820779, 0.20168193, 0.8983…
+#> $ u2  <dbl> 0.67371223, 0.09485786, 0.49259612, 0.46155184, 0.37521653, 0.9910…
+#> $ grp <chr> "C", "E", "B", "E", "E", "C", "J", "B", "G", "H", "B", "J", "G", "…
+```
 
 Suppose that we are mainly interested in groups `A` and `B`, but we do
 not want to lose the `u1` and `u2` information from other groups.
 Visualizing with focus on observations such that `grp` is `A` or `B` is
 shown below.
 
-    # Default scales
-    ggplot(df, aes(x = u1, y = u2, color = grp)) +
-      geom_point() +
-      ggtitle("Standard Scales")
+``` r
+# Default scales
+ggplot(df, aes(x = u1, y = u2, color = grp)) +
+  geom_point() +
+  ggtitle("Standard Scales")
+```
 
 <img src="man/figures/README-example_2-1.png" width="50%" />
 
-
-    # Focus scales
-    ggplot(df, aes(x = u1, y = u2, color = grp, alpha = grp)) +
-      geom_point() +
-      scale_color_focus(c("A", "B"), color_focus = c("blue", "red")) +
-      scale_alpha_focus(c("A", "B")) +
-      ggtitle("Focus Scales")
+``` r
+# Focus scales
+ggplot(df, aes(x = u1, y = u2, color = grp, alpha = grp)) +
+  geom_point() +
+  scale_color_focus(c("A", "B"), color_focus = c("blue", "red")) +
+  scale_alpha_focus(c("A", "B")) +
+  ggtitle("Focus Scales")
+```
 
 <img src="man/figures/README-example_2-2.png" width="50%" />
 
@@ -106,11 +108,14 @@ Since `ggfocus` creates the focused visualization solely by controlling
 scales, other `ggplot` extensions and types of graphics can interact
 with it the same way, an example with the `maps` package is shown below.
 
-    library(maps)
-    wm <- map_data("world")
-    ggplot(wm, aes(x=long, y = lat, group = group, fill = region)) + 
-      geom_polygon(color="black") +
-      theme_void() +
-      scale_fill_focus(c("Brazil", "Canada", "Australia", "India"), color_other = "gray")
+``` r
+library(maps)
+wm <- map_data("world")
+ggplot(wm, aes(x = long, y = lat, group = group, fill = region)) +
+  geom_polygon(color = "black") +
+  theme_void() +
+  scale_fill_focus(c("Brazil", "Canada", "Australia", "India"),
+                   color_other = "gray")
+```
 
-![](man/figures/README-example_map-1.png)
+![](man/figures/README-example_map-1.png)<!-- -->

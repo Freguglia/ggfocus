@@ -1,7 +1,7 @@
 ---
-title: "ggfocus"
-author: "Victor Freguglia"
-output: md_document
+output:
+  github_document:
+    html_preview: false
 ---
 
 # ggfocus <img src='man/figures/logo.png' align="right" height="200" />
@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 ```
 
 <!-- badges: start -->
-[![Build Status](https://travis-ci.org/Freguglia/ggfocus.svg?branch=master)](https://travis-ci.org/Freguglia/ggfocus)
+[![check-release](https://github.com/Freguglia/ggfocus/actions/workflows/check-release.yaml/badge.svg)](https://github.com/Freguglia/ggfocus/actions/workflows/check-release.yaml)
 [![CRAN status](http://www.r-pkg.org/badges/version-last-release/ggfocus)](https://cran.r-project.org/package=ggfocus)
 <!-- badges: end -->
 
@@ -39,7 +39,7 @@ devtools::install_github("Freguglia/ggfocus") # Latest version
 install.packages("ggfocus") # CRAN version
 ```
 
-## Usage 
+## Usage
 
 The workflow of `ggfocus` is the same as any `ggplot` graphic with the addition of the **focus scales** family of functions:
 
@@ -62,7 +62,7 @@ Creating an example dataset.
 library(ggfocus)
 set.seed(1)
 # Create an example dataset
-df <- data.frame(u1 = runif(300), 
+df <- data.frame(u1 = runif(300),
                  u2 = runif(300),
                  grp = sample(LETTERS[1:10], 300, replace = TRUE))
 dplyr::glimpse(df)
@@ -92,8 +92,9 @@ Since `ggfocus` creates the focused visualization solely by controlling scales, 
 ```{r example_map}
 library(maps)
 wm <- map_data("world")
-ggplot(wm, aes(x=long, y = lat, group = group, fill = region)) + 
-  geom_polygon(color="black") +
+ggplot(wm, aes(x = long, y = lat, group = group, fill = region)) +
+  geom_polygon(color = "black") +
   theme_void() +
-  scale_fill_focus(c("Brazil", "Canada", "Australia", "India"), color_other = "gray")
+  scale_fill_focus(c("Brazil", "Canada", "Australia", "India"),
+                   color_other = "gray")
 ```

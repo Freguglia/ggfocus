@@ -17,9 +17,8 @@ knitr::opts_chunk$set(
 ```
 
 <!-- badges: start -->
-[![Build Status](https://travis-ci.org/Freguglia/ggfocus.svg?branch=master)](https://travis-ci.org/Freguglia/ggfocus)
-[![CRAN status](http://www.r-pkg.org/badges/version-last-release/ggfocus)](https://cran.r-project.org/package=ggfocus)
 [![check-release](https://github.com/Freguglia/ggfocus/actions/workflows/check-release.yaml/badge.svg)](https://github.com/Freguglia/ggfocus/actions/workflows/check-release.yaml)
+[![CRAN status](http://www.r-pkg.org/badges/version-last-release/ggfocus)](https://cran.r-project.org/package=ggfocus)
 <!-- badges: end -->
 
 ## Introduction

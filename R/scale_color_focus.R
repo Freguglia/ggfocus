@@ -38,7 +38,7 @@ scale_color_focus <- function(focus_levels, color_focus = NULL,
 
 #' @export
 #' @method ggplot_add ggfocus_color
-ggplot_add.ggfocus_color <- function(object, plot, object_name){
+ggplot_add.ggfocus_color <- function(object, plot, ...){
 
   p1 <- plot
   focus_levels <- object$focus_levels

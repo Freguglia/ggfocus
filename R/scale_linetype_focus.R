@@ -15,7 +15,7 @@ scale_linetype_focus <- function(focus_levels, linetype_focus = 1,
 
 #' @export
 #' @method ggplot_add ggfocus_linetype
-ggplot_add.ggfocus_linetype <- function(object, plot, object_name){
+ggplot_add.ggfocus_linetype <- function(object, plot, ...){
 
   p1 <- plot
   focus_levels <- object$focus_levels

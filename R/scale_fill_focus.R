@@ -17,7 +17,7 @@ scale_fill_focus <- function(focus_levels, color_focus = NULL,
 
 #' @export
 #' @method ggplot_add ggfocus_fill
-ggplot_add.ggfocus_fill <- function(object, plot, object_name){
+ggplot_add.ggfocus_fill <- function(object, plot, ...){
 
   p1 <- plot
   focus_levels <- object$focus_levels

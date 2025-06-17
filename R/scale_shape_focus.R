@@ -22,7 +22,7 @@ scale_shape_focus <- function(focus_levels,
 
 #' @export
 #' @method ggplot_add ggfocus_shape
-ggplot_add.ggfocus_shape <- function(object, plot, object_name){
+ggplot_add.ggfocus_shape <- function(object, plot, ...){
 
   p1 <- plot
   focus_levels <- object$focus_levels

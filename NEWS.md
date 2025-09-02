@@ -10,3 +10,7 @@
 * Focus scales added for **size**, **linetype** and **shape**.
 * Documentation for all focus scales are now available in a single help file. 
 Use `?scale_focus` to view usage and examples.
+
+# ggfocus 1.0.1 (2025-09-02)
+
+* `ggfocus()` function is removed.

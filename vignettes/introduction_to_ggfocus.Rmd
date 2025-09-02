@@ -60,8 +60,8 @@ out other groups.
 
 ```{r bad_filter}
 library(dplyr)
-df %>% 
-  filter(grp %in% c("A", "B")) %>%
+df |> 
+  filter(grp %in% c("A", "B")) |>
   ggplot(aes(x = u1, y = u2, color = grp)) +
   geom_point()
 ```
@@ -80,8 +80,8 @@ use all the data but group each "unfocused" level in a new level and manipulate
 scales. This requires data wrangling and scale manipulation.
 
 ```{r base_solution}
-df %>%
-  mutate(grp = ifelse(grp %in% c("A", "B"), as.character(grp), "other")) %>%
+df |>
+  mutate(grp = ifelse(grp %in% c("A", "B"), as.character(grp), "other")) |>
   ggplot(aes(x = u1, y = u2, color = grp)) +
   geom_point() +
   scale_color_manual(values = c("A" = "red", "B" = "blue", "other" = "gray"))
@@ -253,8 +253,8 @@ Some examples are below:
 ```{r example_ggrepel}
 library(dplyr)
 library(ggrepel)
-iris %>% 
-  mutate(id = row_number()) %>%
+iris |> 
+  mutate(id = row_number()) |>
   ggplot(aes(x = Petal.Length, y = Sepal.Length, label = id, size = id)) +
   geom_text_repel() +
   scale_size_focus(c(100,127), size_focus = 8, size_other = 2)

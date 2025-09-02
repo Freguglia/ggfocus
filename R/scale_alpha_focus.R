@@ -20,7 +20,7 @@ scale_alpha_focus <- function(focus_levels, alpha_focus = 1,
 
 #' @export
 #' @method ggplot_add ggfocus_alpha
-ggplot_add.ggfocus_alpha <- function(object, plot, object_name){
+ggplot_add.ggfocus_alpha <- function(object, plot, ...){
 
   p1 <- plot
   focus_levels <- object$focus_levels

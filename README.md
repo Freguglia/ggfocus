@@ -43,12 +43,12 @@ install.packages("ggfocus") # CRAN version
 The workflow of `ggfocus` is the same as any `ggplot` graphic with the
 addition of the **focus scales** family of functions:
 
--   `scale_color_focus(focus_levels, color_focus = NULL, color_other = "gray", palette_focus = "Set1")`
--   `scale_fill_focus(focus_levels, color_focus = NULL, color_other = "gray", palette_focus = "Set1")`
--   `scale_alpha_focus(focus_levels, alpha_focus = 1, alpha_other = .05)`
--   `scale_linetype_focus(focus_levels, linetype_focus = 1, linetype_other = 3)`
--   `scale_shape_focus(focus_levels, shape_focus = 8, shape_other = 1)`
--   `scale_size_focus(focus_levels, size_focus = 3, size_other = 1)`
+- `scale_color_focus(focus_levels, color_focus = NULL, color_other = "gray", palette_focus = "Set1")`
+- `scale_fill_focus(focus_levels, color_focus = NULL, color_other = "gray", palette_focus = "Set1")`
+- `scale_alpha_focus(focus_levels, alpha_focus = 1, alpha_other = .05)`
+- `scale_linetype_focus(focus_levels, linetype_focus = 1, linetype_other = 3)`
+- `scale_shape_focus(focus_levels, shape_focus = 8, shape_other = 1)`
+- `scale_size_focus(focus_levels, size_focus = 3, size_other = 1)`
 
 The user should map the variable with the grouping variable to all the
 `aes` used to highlight observations and then use these functions to
@@ -69,12 +69,14 @@ set.seed(1)
 df <- data.frame(u1 = runif(300),
                  u2 = runif(300),
                  grp = sample(LETTERS[1:10], 300, replace = TRUE))
-dplyr::glimpse(df)
-#> Rows: 300
-#> Columns: 3
-#> $ u1  <dbl> 0.26550866, 0.37212390, 0.57285336, 0.90820779, 0.20168193, 0.8983…
-#> $ u2  <dbl> 0.67371223, 0.09485786, 0.49259612, 0.46155184, 0.37521653, 0.9910…
-#> $ grp <chr> "C", "E", "B", "E", "E", "C", "J", "B", "G", "H", "B", "J", "G", "…
+head(df)
+#>          u1         u2 grp
+#> 1 0.2655087 0.67371223   C
+#> 2 0.3721239 0.09485786   E
+#> 3 0.5728534 0.49259612   B
+#> 4 0.9082078 0.46155184   E
+#> 5 0.2016819 0.37521653   E
+#> 6 0.8983897 0.99109922   C
 ```
 
 Suppose that we are mainly interested in groups `A` and `B`, but we do
@@ -92,6 +94,7 @@ ggplot(df, aes(x = u1, y = u2, color = grp)) +
 <img src="man/figures/README-example_2-1.png" width="50%" />
 
 ``` r
+
 # Focus scales
 ggplot(df, aes(x = u1, y = u2, color = grp, alpha = grp)) +
   geom_point() +

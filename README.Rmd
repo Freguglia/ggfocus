@@ -65,7 +65,7 @@ set.seed(1)
 df <- data.frame(u1 = runif(300),
                  u2 = runif(300),
                  grp = sample(LETTERS[1:10], 300, replace = TRUE))
-dplyr::glimpse(df)
+head(df)
 ```
 
 Suppose that we are mainly interested in groups `A` and `B`, but we do not want to lose the `u1` and `u2` information from other groups. Visualizing with focus on observations such that `grp` is `A` or `B` is shown below.

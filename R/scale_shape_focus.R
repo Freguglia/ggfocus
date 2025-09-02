@@ -34,7 +34,7 @@ ggplot_add.ggfocus_shape <- function(object, plot, ...){
     stop("'shape' isn't mapped by any variable. Use '+ aes(shape = ...)' before setting the focus scale.")
   }
 
-  p1$data <- p1$data %>%
+  p1$data <- p1$data |>
     mutate(.marker_shape = ifelse(as.character(!!var) %in% focus_levels,
                                  as.character(!!var), "Other"))
 
@@ -47,11 +47,11 @@ ggplot_add.ggfocus_shape <- function(object, plot, ...){
   }
 
 
-  n_levels <- p1$data$.marker_shape %>% unique() %>% length()
+  n_levels <- p1$data$.marker_shape |> unique() |> length()
 
 
   shape_values <- numeric(n_levels)
-  names(shape_values) <- p1$data$.marker_shape %>% unique()
+  names(shape_values) <- p1$data$.marker_shape |> unique()
   shape_values["Other"] <- shape_other
   shape_values[names(shape_values) != "Other"] <- shape_focus
 

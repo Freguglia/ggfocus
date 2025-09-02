@@ -32,7 +32,7 @@ ggplot_add.ggfocus_alpha <- function(object, plot, ...){
     stop("'alpha' isn't mapped by any variable. Use '+ aes(alpha = ...)' before setting the focus scale.")
   }
 
-  p1$data <- p1$data %>%
+  p1$data <- p1$data |>
     mutate(.marker_alpha = ifelse(as.character(!!var) %in% focus_levels,
                                  as.character(!!var), "Other"))
 
@@ -45,10 +45,10 @@ ggplot_add.ggfocus_alpha <- function(object, plot, ...){
   }
 
 
-  n_levels <- p1$data$.marker_alpha %>% unique() %>% length()
+  n_levels <- p1$data$.marker_alpha |> unique() |> length()
 
   alpha_values <- rep(alpha_focus, n_levels)
-  names(alpha_values) <- p1$data$.marker_alpha %>% unique()
+  names(alpha_values) <- p1$data$.marker_alpha |> unique()
   alpha_values["Other"] <- alpha_other
 
   p1 <- p1 +

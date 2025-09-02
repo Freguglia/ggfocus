@@ -31,7 +31,7 @@ ggplot_add.ggfocus_fill <- function(object, plot, ...){
     return(plot)
   }
 
-  p1$data <- p1$data %>%
+  p1$data <- p1$data |>
     mutate(.marker_fill = ifelse(as.character(!!var) %in% focus_levels,
                                   as.character(!!var), "Other"))
 
@@ -44,7 +44,7 @@ ggplot_add.ggfocus_fill <- function(object, plot, ...){
   }
 
 
-  n_levels <- p1$data$.marker_fill %>% unique() %>% length()
+  n_levels <- p1$data$.marker_fill |> unique() |> length()
 
   if(is.null(color_focus)){
     color_focus <- suppressWarnings(
@@ -55,7 +55,7 @@ ggplot_add.ggfocus_fill <- function(object, plot, ...){
     stop("color_focus must be of length 1 or same length as focus_levels.")
   }
   color_values <- rep(color_other, n_levels)
-  names(color_values) <- p1$data$.marker_fill %>% unique()
+  names(color_values) <- p1$data$.marker_fill |> unique()
   color_values[as.character(focus_levels)] <- color_focus
 
   p1 <- p1 +

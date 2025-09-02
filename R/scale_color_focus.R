@@ -52,7 +52,7 @@ ggplot_add.ggfocus_color <- function(object, plot, ...){
     return(plot)
   }
 
-  p1$data <- p1$data %>%
+  p1$data <- p1$data |>
     mutate(.marker_color = ifelse(as.character(!!var) %in% focus_levels,
            as.character(!!var), "Other"))
 
@@ -64,7 +64,7 @@ ggplot_add.ggfocus_color <- function(object, plot, ...){
     message("There are no observations selected. Are the levels misspelled? Is the correct variable mapped to 'color'?")
   }
 
-  n_levels <- p1$data$.marker_color %>% unique() %>% length()
+  n_levels <- p1$data$.marker_color |> unique() |> length()
 
   if(is.null(color_focus)){
     color_focus <- suppressWarnings(
@@ -75,7 +75,7 @@ ggplot_add.ggfocus_color <- function(object, plot, ...){
     stop("color_focus must be of length 1 or same length as focus_levels.")
   }
   color_values <- rep(color_other, n_levels)
-  names(color_values) <- p1$data$.marker_color %>% unique()
+  names(color_values) <- p1$data$.marker_color |> unique()
   color_values[as.character(focus_levels)] <- color_focus
 
   p1 <- p1 +
@@ -85,4 +85,3 @@ ggplot_add.ggfocus_color <- function(object, plot, ...){
                        name = rlang::quo_text(var))
   return(p1)
 }
-

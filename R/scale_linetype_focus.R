@@ -27,7 +27,7 @@ ggplot_add.ggfocus_linetype <- function(object, plot, ...){
     stop("'linetype' isn't mapped by any variable. Use '+ aes(linetype = ...)' before setting the focus scale.")
   }
 
-  p1$data <- p1$data %>%
+  p1$data <- p1$data |>
     mutate(.marker_linetype = ifelse(as.character(!!var) %in% focus_levels,
                                  as.character(!!var), "Other"))
 
@@ -40,10 +40,10 @@ ggplot_add.ggfocus_linetype <- function(object, plot, ...){
   }
 
 
-  n_levels <- p1$data$.marker_linetype %>% unique() %>% length()
+  n_levels <- p1$data$.marker_linetype |> unique() |> length()
 
   linetype_values <- numeric(n_levels)
-  names(linetype_values) <- p1$data$.marker_linetype %>% unique()
+  names(linetype_values) <- p1$data$.marker_linetype |> unique()
   linetype_values["Other"] <- linetype_other
   linetype_values[names(linetype_values) != "Other"] <- linetype_focus
 

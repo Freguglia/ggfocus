@@ -22,5 +22,7 @@ Suggests:
     knitr,
     rmarkdown,
     maps,
-    ggrepel
+    ggrepel,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
+Config/testthat/edition: 3

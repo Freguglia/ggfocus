@@ -31,10 +31,10 @@ all the flexibility from `ggplot.` The idea behind this package is from
 ## Installing ggfocus
 
 The package is available on CRAN, but you can also install the latest
-version from Github with [devtools](https://github.com/hadley/devtools).
+version from Github with `pak`.
 
 ``` r
-devtools::install_github("Freguglia/ggfocus") # Latest version
+pak::pak("Freguglia/ggfocus") # Latest version
 install.packages("ggfocus") # CRAN version
 ```
 

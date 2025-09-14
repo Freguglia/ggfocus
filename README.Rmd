@@ -32,10 +32,10 @@ While `ggplot2` is a great tool for data visualization in general, constructing 
 
 ## Installing ggfocus
 
-The package is available on CRAN, but you can also install the latest version from Github with [devtools](https://github.com/hadley/devtools).
+The package is available on CRAN, but you can also install the latest version from Github with `pak`.
 
 ```{r install, eval=FALSE}
-devtools::install_github("Freguglia/ggfocus") # Latest version
+pak::pak("Freguglia/ggfocus") # Latest version
 install.packages("ggfocus") # CRAN version
 ```
 
